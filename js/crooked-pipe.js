@@ -47,7 +47,7 @@ function nextScene() {
 // Handle form submission - start the game
 loginForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  loginForm.style.display = 'none';
+  loginForm.classList.add('form-hidden');
   showScene(0);
 });
 
