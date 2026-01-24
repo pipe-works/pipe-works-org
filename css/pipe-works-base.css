@@ -87,7 +87,7 @@ h1 {
   text-align: center;
   font-style: italic;
   color: var(--ink-faded);
-  margin-bottom: -0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 h2, h3 {
@@ -184,9 +184,9 @@ p {
 }
 
 .ascii--mark {
-  margin-left: -0.5rem;
-  margin-inline-start: 40px;
-  margin-inline-end: 40px;
+margin-left: -0.5rem;
+margin-inline-start: 48px;
+margin-inline-end: 40px;
 }
 
 /* =========================================================

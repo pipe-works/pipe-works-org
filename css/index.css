@@ -4,6 +4,15 @@
    ========================================================= */
 
 /* =========================================================
+   COLOPHON (license/machine note)
+   ========================================================= */
+
+.colophon {
+  font-family: var(--font-record);
+  font-size: 0.75em;
+}
+
+/* =========================================================
    ACTIONS LIST
    ========================================================= */
 
@@ -55,11 +64,31 @@
 }
 
 /* =========================================================
-   MARGIN NOTE POSITIONING
+   FOOTER POSITIONING (aligned with actions)
    ========================================================= */
 
+.imprint {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: -8rem;
+  padding-left: 2rem;
+}
+
+.imprint .ascii {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.imprint .margin-note {
+  margin: 0;
+  margin-top: 0.25rem;
+}
+
 #note-austrian-engineering {
-  margin-left: 20rem;
-  margin-top: -4.5rem;
-  max-width: 18rem;
+  max-width: 20rem;
+  margin-left: -3.6rem;
+  margin-top: 1.6rem;
 }
