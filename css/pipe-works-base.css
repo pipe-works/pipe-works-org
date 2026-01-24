@@ -1,23 +1,63 @@
 /* =========================================================
    pipe-works-base.css
-   Pipe-Works — Shared Foundation
+   Pipe-Works — Unified Foundation
+
+   MERGED FROM:
+   - shared-base.css (The Daily Undertaking foundation)
+   - pipe-works-base.css (Pipe-Works theming)
 
    PURPOSE
-   - Pipe-works palette tokens
-   - Body and sheet container
-   - Typography and section styling
-   - Common components (sticker, ascii, imprint)
+   - Global tokens (fonts, colors, spacing)
+   - Minimal reset + accessibility
+   - Pipe-works palette and theming
+   - Common components (sheet, sticker, ascii, imprint)
 
    RULE OF THUMB
-   pipe-works-base.css defines the pamphleteer voice.
-   page CSS handles positioning and page-specific components.
+   This file defines the pamphleteer voice and vocabulary.
+   Page CSS (index.css, crooked-pipe.css, etc.) writes sentences.
+
+   TODO: Consolidate color palettes (newsprint vs pipe-works)
    ========================================================= */
 
+
 /* =========================================================
-   1) TOKENS — PIPE-WORKS PALETTE
+   1) TOKENS — COLOR PALETTES
    ========================================================= */
 
 :root {
+  /* ---------------------------------------------------------
+     1.1 NEWSPRINT PALETTE (from Daily Undertaking)
+     Keeping for potential future use / reference
+     --------------------------------------------------------- */
+  --ink-absolute: #000;
+  --ink-none: transparent;
+
+  --ink-newsprint-black: var(--ink-absolute);
+  --ink-newsprint-gray: #2b2b2b;
+  --ink-newsprint-faded: #4a4a4a;
+  --ink-red: #c41e3a;
+
+  --ink-accent: #1a1a1a;
+  --ink-warning: #1a1a1a;
+  --ink-error: #1a1a1a;
+  --ink-success: #1a1a1a;
+
+  --paper-newsprint: #f2efe9;
+  --paper-muted: #ebe5d6;
+  --surface-backdrop: #2a2a2a;
+
+  --rule: #2c2c2c;
+  --rule-muted: #3a3a3a;
+  --rule-faint: #5a5a5a;
+
+  --shadow-soft: rgb(0 0 0 / 10%);
+  --shadow-medium: rgb(43 43 43 / 15%);
+  --overlay-paper: rgb(214 209 199 / 20%);
+
+  /* ---------------------------------------------------------
+     1.2 PIPE-WORKS PALETTE (current theme)
+     Aged paper, ink, blood accents
+     --------------------------------------------------------- */
   --paper: #f3ecd8;
   --ink: #2a1f14;
   --ink-faded: #5c4a3a;
@@ -27,12 +67,210 @@
   --bg: #2b241c;
 }
 
+
 /* =========================================================
-   2) BODY & SHEET
+   2) TOKENS — TYPOGRAPHY
    ========================================================= */
+
+:root {
+  /* Font families */
+  --font-masthead: 'IM Fell English SC', serif;
+  --font-headline: 'Libre Baskerville', serif;
+  --font-body: 'Crimson Text', serif;
+  --font-record:
+    'Courier Prime', ui-monospace, sfmono-regular, menlo, monaco, consolas,
+    'Liberation Mono', monospace;
+  --font-data:
+    'Courier Prime', ui-monospace, sfmono-regular, menlo, monaco, consolas,
+    'Liberation Mono', monospace;
+  --font-console:
+    'Courier Prime', ui-monospace, sfmono-regular, menlo, monaco, consolas,
+    'Liberation Mono', monospace;
+  --font-symbols: 'IM Fell English', serif;
+  --font-accent:
+    'Special Elite', ui-monospace, sfmono-regular, menlo, monaco, consolas,
+    'Liberation Mono', monospace;
+
+  /* Font sizes & rhythm */
+  --text-size: 16px;
+  --text-line: 1.35;
+}
+
+
+/* =========================================================
+   3) TOKENS — SPACING & RADII
+   ========================================================= */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius-1: 2px;
+  --radius-2: 4px;
+}
+
+
+/* =========================================================
+   4) RESET — MINIMAL + PREDICTABLE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+::selection {
+  background: var(--overlay-paper);
+}
+
+
+/* =========================================================
+   5) ACCESSIBILITY & MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================================================
+   6) UTILITIES
+   ========================================================= */
+
+.u-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.u-nowrap {
+  white-space: nowrap;
+}
+
+.u-muted {
+  color: var(--ink-faded);
+}
+
+.u-faint {
+  color: var(--ink-faded);
+  opacity: 0.85;
+}
+
+.u-rule-top {
+  border-top: 1px solid var(--rule);
+}
+
+.u-rule-bottom {
+  border-bottom: 1px solid var(--rule);
+}
+
+
+/* =========================================================
+   7) SCROLLBAR STYLING
+   ========================================================= */
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-faded);
+  border-radius: var(--radius-1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink);
+}
+
+/* Firefox */
+* {
+  scrollbar-color: var(--ink-faded) var(--paper);
+  scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   8) BODY & SHEET — PIPE-WORKS LAYOUT
+   ========================================================= */
+
+body {
   padding: 2rem 1rem;
   background: var(--bg);
   font-family: var(--font-body);
@@ -70,8 +308,9 @@ body {
   box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
 }
 
+
 /* =========================================================
-   3) TYPOGRAPHY
+   9) TYPOGRAPHY — PIPE-WORKS VOICE
    ========================================================= */
 
 h1 {
@@ -114,8 +353,9 @@ p {
   font-style: italic;
 }
 
+
 /* =========================================================
-   4) SECTIONS
+   10) SECTIONS — NOTICE, LEDGER, RULE
    ========================================================= */
 
 .notice,
@@ -140,8 +380,9 @@ p {
   padding-left: 1.25rem;
 }
 
+
 /* =========================================================
-   5) MARGIN NOTES (BASE)
+   11) MARGIN NOTES
    ========================================================= */
 
 .margin-note {
@@ -151,8 +392,9 @@ p {
   max-width: 18rem;
 }
 
+
 /* =========================================================
-   6) ASCII ART
+   12) ASCII ART
    ========================================================= */
 
 .ascii {
@@ -184,13 +426,14 @@ p {
 }
 
 .ascii--mark {
-margin-left: -0.5rem;
-margin-inline-start: 48px;
-margin-inline-end: 40px;
+  margin-left: -0.5rem;
+  margin-inline-start: 48px;
+  margin-inline-end: 40px;
 }
 
+
 /* =========================================================
-   7) STICKER (Shared: index, goblin_laws)
+   13) STICKER (index, goblin_laws)
    ========================================================= */
 
 .sticker {
@@ -233,8 +476,9 @@ margin-inline-end: 40px;
   font-size: 0.6rem;
 }
 
+
 /* =========================================================
-   8) FOOTER / IMPRINT
+   14) FOOTER / IMPRINT
    ========================================================= */
 
 .imprint {
@@ -258,4 +502,18 @@ margin-inline-end: 40px;
 
 .back-to-top a:hover {
   opacity: 1;
+}
+
+
+/* =========================================================
+   15) EDITORIAL MARKS
+   ========================================================= */
+
+.marker,
+.ReferenceMark {
+  font-family: var(--font-symbols);
+  font-weight: 400;
+  color: var(--ink);
+  flex-shrink: 0;
+  line-height: 1;
 }

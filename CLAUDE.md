@@ -27,10 +27,9 @@ npx http-server                    # Node server at localhost:8080
 
 ### CSS Structure
 - `css/fonts.css` — @font-face declarations for locally-served WOFF2 fonts
-- `css/shared-base.css` — Global CSS tokens, reset, utilities (newsprint palette)
-- `css/pipe-works-base.css` — Pipe-works palette, sheet container, typography, common components
-- `css/index.css` — Index page (actions list, crooked-pipe link)
-- `css/crooked-pipe.css` — Crooked Pipe page (door image, login form, reveal animations)
+- `css/pipe-works-base.css` — Unified foundation: tokens, reset, typography, common components
+- `css/index.css` — Index page (actions list, crooked-pipe link, footer positioning)
+- `css/crooked-pipe.css` — Crooked Pipe page (door image, login form, interactive story)
 - `css/three-pillars.css` — Three Pillars page (pillar positioning)
 - `css/goblin-laws.css` — Goblin Laws page (blockquotes, margin positioning)
 
@@ -40,9 +39,10 @@ npx http-server                    # Node server at localhost:8080
 
 ## Design System
 
-### CSS Variables
-- **shared-base.css**: `--paper`, `--ink-newsprint-*`, `--rule`, `--shadow-*`, `--font-*`, `--space-*`
-- **pipe-works-base.css**: `--paper`, `--ink`, `--ink-faded`, `--blood`, `--pin`, `--cooling-brown`, `--bg`
+### CSS Variables (all in pipe-works-base.css)
+- **Newsprint palette** (legacy): `--ink-newsprint-*`, `--paper-newsprint`, `--rule`, `--shadow-*`
+- **Pipe-works palette** (active): `--paper`, `--ink`, `--ink-faded`, `--blood`, `--pin`, `--cooling-brown`, `--bg`
+- **Typography**: `--font-masthead`, `--font-headline`, `--font-body`, `--font-record`, `--font-symbols`
 - All colors use these tokens; don't hardcode hex values
 
 ### Typography Roles
@@ -61,8 +61,6 @@ npx http-server                    # Node server at localhost:8080
 
 ## JavaScript
 
-Minimal vanilla JS, inline in HTML `<script>` tags. Used only for:
-- Form input validation (enable/disable buttons)
-- Reveal animations on form submission (DOM class toggling)
+Located in `js/` directory. Vanilla JS, no external libraries.
 
-No external libraries.
+- `js/crooked-pipe.js` — Interactive story game with keyboard bindings (1, 2, etc.)
