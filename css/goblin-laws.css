@@ -58,15 +58,24 @@ main:has(.rule:target) #index {
 }
 
 /* =========================================================
-   PIPE MARK — INDEPENDENT POSITIONING
+   PIPE MARK — Uses quirk system for responsive positioning
    ========================================================= */
 
 #pipe-mark {
   position: absolute;
-  left: -3rem;
-  bottom: 7.5rem;
-  transform: rotate(5deg);
+  left: 0;
+bottom: 7.6rem;
   opacity: 0.7;
+
+  --quirk-x: -3rem;
+  --quirk-y: 0rem;
+  --quirk-rotate: 5deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 /* =========================================================
@@ -85,11 +94,20 @@ blockquote p {
 }
 
 /* =========================================================
-   MARGIN NOTE POSITIONING
+   MARGIN NOTE POSITIONING — Uses quirk system
    ========================================================= */
 
 #note-goblin-laws {
-  margin-left: 14rem;
-  margin-top: -1.5rem;
+  display: inline-block;
   max-width: 22rem;
+
+  --quirk-x: 14rem;
+  --quirk-y: -1.5rem;
+  --quirk-rotate: 0deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }

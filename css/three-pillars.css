@@ -1,28 +1,68 @@
 /* =========================================================
    three-pillars.css
    Pipe-Works — Three Pillars Page
+
+   Uses the quirk system from pipe-works-base.css for
+   intentional misalignment that scales with viewport.
    ========================================================= */
 
 /* =========================================================
-   ASCII ART POSITIONING
+   STRUCTURAL LAYOUT — Where things belong
+   ========================================================= */
+
+.rule .ascii {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.rule .margin-note {
+  display: inline-block;
+  margin-top: 1rem;
+  max-width: 22rem;
+}
+
+/* =========================================================
+   ASCII ART QUIRKS — Intentional offsets via transforms
+
+   Each element defines its own quirk values.
+   These are multiplied by --quirk-intensity automatically.
+   On mobile (intensity: 0.3), offsets reduce proportionally.
    ========================================================= */
 
 #ascii-pillar-one {
-  margin-left: 10rem;
-  margin-top: -2rem;
-  max-width: 22rem;
+  --quirk-x: 10rem;
+  --quirk-y: -2rem;
+  --quirk-rotate: 0deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 #ascii-pillar-two {
-  margin-left: -1rem;
-  margin-top: -2.5rem;
-  max-width: 22rem;
+  --quirk-x: -1rem;
+  --quirk-y: -2.5rem;
+  --quirk-rotate: 0deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 #ascii-pillar-three {
-  margin-left: -1rem;
-  margin-top: -2.5rem;
-  max-width: 22rem;
+  --quirk-x: -1rem;
+  --quirk-y: -2.5rem;
+  --quirk-rotate: 0deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 .ascii-pillar-three code {
@@ -30,23 +70,41 @@
 }
 
 /* =========================================================
-   MARGIN NOTE POSITIONING
+   MARGIN NOTE QUIRKS — Positioned relative to their section
    ========================================================= */
 
 #note-pillar-one {
-  margin-left: 15.1rem;
-  margin-top: 2.4rem;
-  max-width: 22rem;
+  --quirk-x: 4rem;
+  --quirk-y: -6.1rem;
+  --quirk-rotate: -0.5deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 #note-pillar-two {
-  margin-left: 3rem;
-  margin-top: 3.8rem;
-  max-width: 22rem;
+  --quirk-x: -7.3rem;
+  --quirk-y: -6rem;
+  --quirk-rotate: 0.3deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 #note-pillar-three {
-  margin-left: 3.1rem;
-  margin-top: 4.7rem;
-  max-width: 22rem;
+  --quirk-x: -6rem;
+  --quirk-y: -5.2rem;
+  --quirk-rotate: -0.2deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }

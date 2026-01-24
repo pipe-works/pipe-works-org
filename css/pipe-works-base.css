@@ -111,6 +111,15 @@
 
   --radius-1: 2px;
   --radius-2: 4px;
+
+  /* ---------------------------------------------------------
+     QUIRK SYSTEM — Intentional Misalignment
+
+     Separates structural layout from aesthetic offsets.
+     Quirks use transforms (don't affect document flow).
+     Adjust --quirk-intensity at breakpoints as needed.
+     --------------------------------------------------------- */
+  --quirk-intensity: 1;
 }
 
 
@@ -233,6 +242,21 @@ h6 {
 
 .u-rule-bottom {
   border-bottom: 1px solid var(--rule);
+}
+
+/* Quirk utility — apply transform-based offsets
+   Elements define their own --quirk-x, --quirk-y, --quirk-rotate
+   These are multiplied by --quirk-intensity for responsive scaling */
+.u-quirk {
+  --quirk-x: 0rem;
+  --quirk-y: 0rem;
+  --quirk-rotate: 0deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
 
 
@@ -518,8 +542,16 @@ p {
   line-height: 1;
 }
 
-/* In pipe-works-base.css */
+/* =========================================================
+   16) RESPONSIVE — MOBILE ADJUSTMENTS
+   ========================================================= */
+
 @media (max-width: 600px) {
+  :root {
+    /* Reduce quirk intensity on mobile — still quirky, just less so */
+    --quirk-intensity: 0.3;
+  }
+
   .sheet {
     padding: 2rem 1.5rem;
   }
@@ -540,5 +572,12 @@ p {
 
   .ascii--mark {
     display: none; /* or reposition */
+  }
+}
+
+/* Kill quirks entirely if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --quirk-intensity: 0;
   }
 }

@@ -65,6 +65,9 @@
 
 /* =========================================================
    FOOTER POSITIONING (aligned with actions)
+
+   Uses quirk system for intentional offset that scales
+   with viewport. Structure via flexbox, character via transforms.
    ========================================================= */
 
 .imprint {
@@ -85,10 +88,17 @@
 .imprint .margin-note {
   margin: 0;
   margin-top: 0.25rem;
+  max-width: 20rem;
 }
 
 #note-austrian-engineering {
-  max-width: 20rem;
-  margin-left: -3.6rem;
-  margin-top: 1.6rem;
+  --quirk-x: -3.5rem;
+  --quirk-y: 1.4rem;
+  --quirk-rotate: -0.8deg;
+  transform:
+    translate(
+      calc(var(--quirk-x) * var(--quirk-intensity)),
+      calc(var(--quirk-y) * var(--quirk-intensity))
+    )
+    rotate(calc(var(--quirk-rotate) * var(--quirk-intensity)));
 }
