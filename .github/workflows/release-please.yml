@@ -1,6 +1,6 @@
 # Release Please workflow
 # Automates CHANGELOG generation and version releases based on Conventional Commits
-# https://github.com/google-github-actions/release-please-action
+# https://github.com/googleapis/release-please-action
 #
 # How it works:
 # 1. Commit messages following Conventional Commits (feat:, fix:, etc.)
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Release Please
-        uses: google-github-actions/release-please-action@v4
+        uses: googleapis/release-please-action@v4
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
