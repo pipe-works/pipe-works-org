@@ -1,0 +1,210 @@
+/* =========================================================
+   crooked-pipe.css
+   Pipe-Works — The Crooked Pipe Page
+   ========================================================= */
+
+/* =========================================================
+   DOOR IMAGE
+   ========================================================= */
+
+.door {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.door img {
+  width: 65%;
+  height: auto;
+  transform: rotate(-0.5deg);
+  box-shadow:
+    1px 1px 0 var(--ink-faded),
+    2px 2px 0 rgba(0,0,0,0.1);
+  background: transparent;
+  filter: grayscale(60%) sepia(20%) contrast(95%) brightness(97%);
+  margin: 0;
+  padding: 0;
+}
+
+.door figcaption {
+  margin-top: 1rem;
+  font-family: var(--font-record);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faded);
+  text-align: center;
+}
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.login label {
+  font-family: var(--font-record);
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  font-weight: 400;
+}
+
+.login input {
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px dotted var(--ink-faded);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-record);
+  font-size: 0.85rem;
+}
+
+.login input:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+.login input::placeholder {
+  color: var(--ink-faded);
+  opacity: 0.4;
+  font-style: italic;
+}
+
+.login button {
+  padding: 0.25rem 0;
+  background: transparent;
+  color: var(--ink-faded);
+  border: none;
+  border-bottom: 1px dotted var(--ink-faded);
+  font-family: var(--font-record);
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.login button:hover:not(:disabled) {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.login button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* =========================================================
+   REVEAL ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-hidden {
+  display: none;
+}
+
+.reveal-item {
+  display: block;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.reveal-item:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.reveal-item:nth-of-type(2) {
+  animation-delay: 0.4s;
+}
+
+.reveal-item:nth-of-type(3) {
+  animation-delay: 0.8s;
+}
+
+.reveal-item:nth-of-type(4) {
+  animation-delay: 1.2s;
+}
+
+/* =========================================================
+   SCENES & CHOICES
+   ========================================================= */
+
+.scene {
+  margin: 2rem 0;
+}
+
+.scene-text {
+  font-family: var(--font-record);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.scene-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.choice {
+  padding: 0.25rem 0;
+  background: transparent;
+  color: var(--ink-faded);
+  border: none;
+  border-bottom: 1px dotted var(--ink-faded);
+  font-family: var(--font-record);
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.choice:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  opacity: 1;
+}
+
+/* =========================================================
+   ASIDE TEXT
+   ========================================================= */
+
+.aside {
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.back-link {
+  font-family: var(--font-record);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+.back-link a {
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.back-link a:hover {
+  color: var(--blood);
+}

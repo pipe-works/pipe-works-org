@@ -1,0 +1,52 @@
+/* =========================================================
+   three-pillars.css
+   Pipe-Works — Three Pillars Page
+   ========================================================= */
+
+/* =========================================================
+   ASCII ART POSITIONING
+   ========================================================= */
+
+#ascii-pillar-one {
+  margin-left: 10rem;
+  margin-top: -2rem;
+  max-width: 22rem;
+}
+
+#ascii-pillar-two {
+  margin-left: -1rem;
+  margin-top: -2.5rem;
+  max-width: 22rem;
+}
+
+#ascii-pillar-three {
+  margin-left: -1rem;
+  margin-top: -2.5rem;
+  max-width: 22rem;
+}
+
+.ascii-pillar-three code {
+  color: var(--blood);
+}
+
+/* =========================================================
+   MARGIN NOTE POSITIONING
+   ========================================================= */
+
+#note-pillar-one {
+  margin-left: 15.1rem;
+  margin-top: 2.4rem;
+  max-width: 22rem;
+}
+
+#note-pillar-two {
+  margin-left: 3rem;
+  margin-top: 3.8rem;
+  max-width: 22rem;
+}
+
+#note-pillar-three {
+  margin-left: 3.1rem;
+  margin-top: 4.7rem;
+  max-width: 22rem;
+}

@@ -1,0 +1,261 @@
+/* =========================================================
+   pipe-works-base.css
+   Pipe-Works — Shared Foundation
+
+   PURPOSE
+   - Pipe-works palette tokens
+   - Body and sheet container
+   - Typography and section styling
+   - Common components (sticker, ascii, imprint)
+
+   RULE OF THUMB
+   pipe-works-base.css defines the pamphleteer voice.
+   page CSS handles positioning and page-specific components.
+   ========================================================= */
+
+/* =========================================================
+   1) TOKENS — PIPE-WORKS PALETTE
+   ========================================================= */
+
+:root {
+  --paper: #f3ecd8;
+  --ink: #2a1f14;
+  --ink-faded: #5c4a3a;
+  --blood: #7a1f1f;
+  --pin: #8b5e3c;
+  --cooling-brown: #4a3a2a;
+  --bg: #2b241c;
+}
+
+/* =========================================================
+   2) BODY & SHEET
+   ========================================================= */
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.sheet {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 2.5rem;
+  background: var(--paper);
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,0.05),
+    0 12px 30px rgba(0,0,0,0.35);
+  position: relative;
+
+  /* Subtle damage / noise */
+  background-image:
+    radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+/* Fake pin */
+.sheet::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--cooling-brown);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
+}
+
+/* =========================================================
+   3) TYPOGRAPHY
+   ========================================================= */
+
+h1 {
+  text-align: center;
+  font-family: var(--font-masthead);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.strapline {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-bottom: -1.5rem;
+}
+
+h2, h3 {
+  margin-top: 2rem;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  padding-bottom: 0.25rem;
+}
+
+p {
+  line-height: 1.5;
+  margin: 0.75rem 0;
+}
+
+.emphasis {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.small {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* =========================================================
+   4) SECTIONS
+   ========================================================= */
+
+.notice,
+.ledger,
+.rule,
+.margin-note {
+  font-family: var(--font-record);
+}
+
+.notice {
+  font-size: 1.05rem;
+}
+
+.rule {
+  margin-top: 2.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--blood);
+}
+
+.ledger ul {
+  list-style: square;
+  padding-left: 1.25rem;
+}
+
+/* =========================================================
+   5) MARGIN NOTES (BASE)
+   ========================================================= */
+
+.margin-note {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink-faded);
+  max-width: 18rem;
+}
+
+/* =========================================================
+   6) ASCII ART
+   ========================================================= */
+
+.ascii {
+  margin-block-start: -2em;
+  margin-block-end: -8em;
+}
+
+.ascii--stamp pre {
+  display: inline-block;
+  transform: rotate(-3.8deg);
+  opacity: 0.82;
+}
+
+.ascii pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.ascii code {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  color: var(--ink-faded);
+}
+
+.ascii--mark {
+  margin-left: -0.5rem;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+}
+
+/* =========================================================
+   7) STICKER (Shared: index, goblin_laws)
+   ========================================================= */
+
+.sticker {
+  position: absolute;
+  top: 1rem;
+  right: -1.5rem;
+  background: #f6e27a;
+  color: #2a1f14;
+  padding: 0.75rem 1rem 0.65rem;
+  font-family: "Arial Black", "Impact", sans-serif;
+  font-size: 0.75rem;
+  text-align: center;
+  transform: rotate(6deg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+.sticker::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.2rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: rgba(255,255,255,0.35);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.sticker strong {
+  letter-spacing: 0.05em;
+}
+
+.sticker span {
+  font-weight: normal;
+  font-size: 0.65rem;
+}
+
+.sticker em {
+  font-style: italic;
+  font-size: 0.6rem;
+}
+
+/* =========================================================
+   8) FOOTER / IMPRINT
+   ========================================================= */
+
+.imprint {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+}
+
+.back-to-top {
+  margin-top: 3rem;
+  margin-left: 1.5rem;
+  font-family: var(--font-record);
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.back-to-top a {
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.back-to-top a:hover {
+  opacity: 1;
+}

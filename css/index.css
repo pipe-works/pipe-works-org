@@ -1,0 +1,65 @@
+/* =========================================================
+   index.css
+   Pipe-Works — Index / Handbill Page
+   ========================================================= */
+
+/* =========================================================
+   ACTIONS LIST
+   ========================================================= */
+
+.actions ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.actions li {
+  margin: 0.5rem 0;
+}
+
+.actions a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--ink-faded);
+}
+
+.actions a:hover {
+  color: var(--blood);
+  border-bottom-color: var(--blood);
+}
+
+/* =========================================================
+   CROOKED PIPE LINK
+   ========================================================= */
+
+.crooked-pipe {
+  display: inline-block;
+  text-decoration: none;
+  margin-left: 2ch;
+  cursor: help;
+}
+
+.pipe-mark {
+  color: var(--blood);
+  margin-top: -1rem;
+  margin-left: -0.5rem;
+  font-family: inherit;
+  font-size: 1.1em;
+  letter-spacing: -0.2ch;
+  opacity: 0.8;
+  transform: rotate(7deg);
+  display: inline-block;
+}
+
+.crooked-pipe:hover .pipe-mark {
+  opacity: 1;
+}
+
+/* =========================================================
+   MARGIN NOTE POSITIONING
+   ========================================================= */
+
+#note-austrian-engineering {
+  margin-left: 20rem;
+  margin-top: -4.5rem;
+  max-width: 18rem;
+}

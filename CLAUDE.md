@@ -26,9 +26,13 @@ npx http-server                    # Node server at localhost:8080
 - `goblin_laws.html` — Extended laws document with categorized sections
 
 ### CSS Structure
-- `css/shared-base.css` — Global CSS tokens, reset, utilities (modify for new tokens)
-- `css/style.css` — Page-specific styling using shared tokens
 - `css/fonts.css` — @font-face declarations for locally-served WOFF2 fonts
+- `css/shared-base.css` — Global CSS tokens, reset, utilities (newsprint palette)
+- `css/pipe-works-base.css` — Pipe-works palette, sheet container, typography, common components
+- `css/index.css` — Index page (actions list, crooked-pipe link)
+- `css/crooked-pipe.css` — Crooked Pipe page (door image, login form, reveal animations)
+- `css/three-pillars.css` — Three Pillars page (pillar positioning)
+- `css/goblin-laws.css` — Goblin Laws page (blockquotes, margin positioning)
 
 ### Assets
 - `assets/fonts/` — Six font families (Crimson Text, Libre Baskerville, IM Fell English, Courier Prime, Special Elite) with OFL licenses
@@ -36,8 +40,9 @@ npx http-server                    # Node server at localhost:8080
 
 ## Design System
 
-### CSS Variables (defined in shared-base.css)
-- `--paper`, `--ink`, `--ink-faded`, `--blood`, `--pin`, `--cooling-brown`, `--bg`
+### CSS Variables
+- **shared-base.css**: `--paper`, `--ink-newsprint-*`, `--rule`, `--shadow-*`, `--font-*`, `--space-*`
+- **pipe-works-base.css**: `--paper`, `--ink`, `--ink-faded`, `--blood`, `--pin`, `--cooling-brown`, `--bg`
 - All colors use these tokens; don't hardcode hex values
 
 ### Typography Roles
