@@ -151,6 +151,12 @@
   margin: 2rem 0;
 }
 
+/* Remove default focus ring when scene is programmatically focused
+   Screen readers will still announce the content */
+.scene:focus {
+  outline: none;
+}
+
 .scene-text {
   font-family: var(--font-record);
   font-size: 0.95rem;

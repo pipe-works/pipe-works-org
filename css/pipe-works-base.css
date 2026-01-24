@@ -517,3 +517,28 @@ p {
   flex-shrink: 0;
   line-height: 1;
 }
+
+/* In pipe-works-base.css */
+@media (max-width: 600px) {
+  .sheet {
+    padding: 2rem 1.5rem;
+  }
+
+  .sticker {
+    position: relative;
+    right: auto;
+    top: auto;
+    margin-bottom: 1rem;
+    transform: rotate(2deg);
+  }
+
+  .margin-note {
+    position: relative;
+    margin: 1rem 0;
+    max-width: 100%;
+  }
+
+  .ascii--mark {
+    display: none; /* or reposition */
+  }
+}

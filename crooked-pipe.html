@@ -33,6 +33,9 @@
 	  </figcaption>
 	</figure>
 
+	<!-- Screen reader announcements -->
+	<div id="game-status" class="u-sr-only" role="status" aria-live="polite"></div>
+
 	<form class="login" id="login-form">
 	  <label for="name">Name (optional)</label>
 	  <input id="name" type="text" placeholder="Ink-stained, probably" />
@@ -46,8 +49,8 @@
 	</form>
 
 	<!-- Game scenes - one line at a time -->
-	<div class="scenes-container">
-	<section class="scene reveal-hidden" id="scene-1">
+	<div class="scenes-container" aria-live="polite" aria-atomic="true" role="region" aria-label="Story">
+	<section class="scene reveal-hidden" id="scene-1" tabindex="-1">
 	  <p class="scene-text">> You knock.</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. Knock again</button>
@@ -55,7 +58,7 @@
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-2">
+	<section class="scene reveal-hidden" id="scene-2" tabindex="-1">
 	  <p class="scene-text">> Someone inside knocks back.</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. Say something</button>
@@ -63,14 +66,14 @@
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-3">
+	<section class="scene reveal-hidden" id="scene-3" tabindex="-1">
 	  <p class="scene-text">> A voice, muffled by wood and age:</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. Lean in</button>
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-4">
+	<section class="scene reveal-hidden" id="scene-4" tabindex="-1">
 	  <p class="scene-text aside">"We're fishing."</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. Fishing?</button>
@@ -78,14 +81,14 @@
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-5">
+	<section class="scene reveal-hidden" id="scene-5" tabindex="-1">
 	  <p class="scene-text aside">"Back when the tide turns."</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. And if it doesn't?</button>
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-6">
+	<section class="scene reveal-hidden" id="scene-6" tabindex="-1">
 	  <p class="scene-text aside">"Or when something bites."</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. I see.</button>
@@ -93,14 +96,14 @@
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-7">
+	<section class="scene reveal-hidden" id="scene-7" tabindex="-1">
 	  <p class="scene-text">> Silence. Then, scratching. A note slides under the door.</p>
 	  <div class="scene-choices">
 		<button type="button" class="choice" data-key="1">1. Pick it up</button>
 	  </div>
 	</section>
 
-	<section class="scene reveal-hidden" id="scene-8">
+	<section class="scene reveal-hidden" id="scene-8" tabindex="-1">
 	  <div class="note">
 		<p>
 		  No keys issued today.<br />
