@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Assets (fonts, images)
+assets/fonts/
+assets/images/
+
+# Working directory
+_working/
+
+# Build outputs
+dist/
+build/

@@ -1,0 +1,94 @@
+# Pre-commit hooks for pipe-works-org (static HTML/CSS/JS site)
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+# Update hooks: pre-commit autoupdate
+
+repos:
+  # General file formatting and checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      # File formatting
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+      # Code quality
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=1000]  # Allow larger assets
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+
+  # HTML linting
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
+    rev: v1.0.1
+    hooks:
+      - id: rst-linter
+        exclude: '.*'  # Disable RST, we don't use it
+      # Note: For HTML validation, we use htmlhint below
+
+  # HTMLHint - HTML linting
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+    rev: v1.1.2
+    hooks:
+      - id: htmlhint
+        args: [--config, .htmlhintrc]
+
+  # Stylelint - CSS linting
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v16.2.1
+    hooks:
+      - id: stylelint
+        args: [--fix]
+        additional_dependencies:
+          - stylelint@16.2.1
+          - stylelint-config-standard@36.0.0
+
+  # ESLint - JavaScript linting
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.17.0
+    hooks:
+      - id: eslint
+        args: [--fix]
+        files: \.js$
+        additional_dependencies:
+          - eslint@9.17.0
+          - '@eslint/js@9.17.0'
+
+  # Prettier - unified formatting for HTML/CSS/JS
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types_or: [html, css, javascript]
+        args: [--write]
+
+  # Spell checking
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args:
+          - --ignore-words-list=hel,tha,zar,ba,ka,lo,te,ro,na,ra,zel
+          - --skip="*.woff2,*.woff,*.ttf,*.eot,*.mp4,*.jpg,*.png"
+        exclude: ^assets/fonts/
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.43.0
+    hooks:
+      - id: markdownlint
+        args: [--fix]
+        exclude: ^_working/
+
+# Configuration for pre-commit.ci (if using)
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+  autofix_prs: true
+  autoupdate_schedule: monthly

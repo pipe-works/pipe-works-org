@@ -1,0 +1,14 @@
+{
+  "defaults": {
+    "timeout": 10000,
+    "wait": 1000,
+    "standard": "WCAG2AA",
+    "runners": ["axe"]
+  },
+  "urls": [
+    "http://localhost:8080/index.html",
+    "http://localhost:8080/crooked-pipe.html",
+    "http://localhost:8080/three-pillars.html",
+    "http://localhost:8080/goblin_laws.html"
+  ]
+}

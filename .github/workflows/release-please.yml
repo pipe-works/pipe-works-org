@@ -1,0 +1,38 @@
+# Release Please workflow
+# Automates CHANGELOG generation and version releases based on Conventional Commits
+# https://github.com/google-github-actions/release-please-action
+#
+# How it works:
+# 1. Commit messages following Conventional Commits (feat:, fix:, etc.)
+# 2. Release Please creates/updates a PR with CHANGELOG and version bump
+# 3. Merging that PR creates a GitHub Release with tag
+#
+# Commit types:
+#   feat:     → minor version bump (0.1.0 → 0.2.0)
+#   fix:      → patch version bump (0.1.0 → 0.1.1)
+#   feat!:    → major version bump (0.1.0 → 1.0.0)
+#   chore:    → no release
+#   docs:     → no release
+#   style:    → no release
+#   refactor: → no release
+
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
