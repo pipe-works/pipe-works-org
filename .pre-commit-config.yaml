@@ -84,7 +84,7 @@ repos:
     hooks:
       - id: markdownlint
         args: [--fix]
-        exclude: ^_working/
+        exclude: ^(_working/|CHANGELOG\.md)
 
 # Configuration for pre-commit.ci (if using)
 ci:
