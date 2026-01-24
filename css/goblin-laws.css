@@ -4,6 +4,72 @@
    ========================================================= */
 
 /* =========================================================
+   SMOOTH SCROLL & ANCHOR OFFSET
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.rule {
+  scroll-margin-top: 2rem;
+}
+
+/* =========================================================
+   INDEX-FIRST VIEW
+   ========================================================= */
+
+/* Hide all laws and category headers by default */
+.rule,
+.ledger:not(#index) {
+  display: none;
+}
+
+/* Show only the targeted law */
+.rule:target {
+  display: block;
+  background: var(--paper);
+  box-shadow:
+    -0.5rem 0 0 var(--paper),
+    0.5rem 0 0 var(--paper),
+    0 0 0 1px var(--ink-faded);
+  border-radius: 2px;
+}
+
+/* Hide index when viewing a law */
+main:has(.rule:target) #index {
+  display: none;
+}
+
+/* Back link — hidden by default, shown when law is targeted */
+.rule .back-to-index {
+  display: none;
+}
+
+.rule:target .back-to-index {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+}
+
+.rule:target .back-to-index:hover {
+  color: var(--ink);
+}
+
+/* =========================================================
+   PIPE MARK — INDEPENDENT POSITIONING
+   ========================================================= */
+
+#pipe-mark {
+  position: absolute;
+  left: -3rem;
+  bottom: 7.5rem;
+  transform: rotate(5deg);
+  opacity: 0.7;
+}
+
+/* =========================================================
    BLOCKQUOTE
    ========================================================= */
 
