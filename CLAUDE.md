@@ -24,7 +24,7 @@ npx http-server                    # Node server at localhost:8080
 - `index.html` — Main landing page with masthead and navigation
 - `crooked-pipe.html` — Interactive reveal page with form-triggered animations
 - `three-pillars.html` — Philosophy/process page with ASCII art stamps
-- `goblin_laws.html` — Extended laws document with categorized sections
+- `goblin-laws.html` — Extended laws document with categorized sections
 
 ### CSS Structure
 
