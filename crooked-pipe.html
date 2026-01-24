@@ -46,64 +46,69 @@
 
 	<!-- Game scenes - one line at a time -->
 	<section class="scene reveal-hidden" id="scene-1">
-	  <p class="scene-text">You knock.</p>
+	  <p class="scene-text">> You knock.</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">Knock again</button>
-		<button type="button" class="choice">Wait</button>
+		<button type="button" class="choice" data-key="1">1. Knock again</button>
+		<button type="button" class="choice" data-key="2">2. Wait</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-2">
-	  <p class="scene-text">Someone inside knocks back.</p>
+	  <p class="scene-text">> Someone inside knocks back.</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">Say something</button>
-		<button type="button" class="choice">Listen closer</button>
+		<button type="button" class="choice" data-key="1">1. Say something</button>
+		<button type="button" class="choice" data-key="2">2. Listen closer</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-3">
-	  <p class="scene-text">A voice, muffled by wood and age:</p>
+	  <p class="scene-text">> A voice, muffled by wood and age:</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">Lean in</button>
+		<button type="button" class="choice" data-key="1">1. Lean in</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-4">
 	  <p class="scene-text aside">"We're fishing."</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">Fishing?</button>
-		<button type="button" class="choice">When will you be back?</button>
+		<button type="button" class="choice" data-key="1">1. Fishing?</button>
+		<button type="button" class="choice" data-key="2">2. When will you be back?</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-5">
 	  <p class="scene-text aside">"Back when the tide turns."</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">And if it doesn't?</button>
+		<button type="button" class="choice" data-key="1">1. And if it doesn't?</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-6">
 	  <p class="scene-text aside">"Or when something bites."</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">I see.</button>
-		<button type="button" class="choice">I'll wait.</button>
+		<button type="button" class="choice" data-key="1">1. I see.</button>
+		<button type="button" class="choice" data-key="2">2. I'll wait.</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-7">
-	  <p class="scene-text">Silence. Then, scratching. A note slides under the door.</p>
+	  <p class="scene-text">> Silence. Then, scratching. A note slides under the door.</p>
 	  <div class="scene-choices">
-		<button type="button" class="choice">Pick it up</button>
+		<button type="button" class="choice" data-key="1">1. Pick it up</button>
 	  </div>
 	</section>
 
 	<section class="scene reveal-hidden" id="scene-8">
-	  <p class="scene-text">
-		No keys issued today.<br />
-		No names recorded.<br />
-		You were still seen.
-	  </p>
+	  <div class="note">
+		<p>
+		  No keys issued today.<br />
+		  No names recorded.<br />
+		  You were still seen.
+		</p>
+		<figure class="note-mark">
+		  <pre><code>│_</code></pre>
+		</figure>
+	  </div>
 	  <p class="back-link">
 		<a href="three-pillars.html">← Back through the three things</a>
 	  </p>

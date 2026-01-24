@@ -57,3 +57,19 @@ document.addEventListener('click', function(e) {
     nextScene();
   }
 });
+
+// Handle keyboard number keys for choices
+document.addEventListener('keydown', function(e) {
+  // Only respond to number keys 1-9
+  if (e.key >= '1' && e.key <= '9') {
+    // Find the current visible scene
+    const currentSceneEl = document.getElementById(scenes[currentScene]);
+    if (!currentSceneEl) return;
+
+    // Find the choice with matching data-key
+    const choice = currentSceneEl.querySelector(`.choice[data-key="${e.key}"]`);
+    if (choice) {
+      choice.click();
+    }
+  }
+});

@@ -81,14 +81,15 @@
   background: transparent;
   color: var(--ink-faded);
   border: none;
-  border-bottom: 1px dotted var(--ink-faded);
+  border-bottom: 2px dotted var(--blood);
   font-family: var(--font-record);
   font-size: 0.85rem;
   text-transform: lowercase;
   letter-spacing: 0.02em;
   cursor: pointer;
   margin-top: 0.5rem;
-  text-align: left;
+  align-self: center;
+  width: auto;
 }
 
 .login button:hover:not(:disabled) {
@@ -188,6 +189,50 @@
 .aside {
   font-style: italic;
   color: var(--ink-faded);
+}
+
+/* =========================================================
+   NOTE (slid under door)
+   ========================================================= */
+
+.note {
+  display: inline-block;
+  position: relative;
+  background: #faf8f3;
+  padding: 1.25rem 1.5rem 1.75rem;
+  margin: 1rem 0;
+  transform: rotate(-1.5deg);
+  box-shadow:
+    1px 1px 0 var(--ink-faded),
+    2px 3px 6px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.note p {
+  font-family: var(--font-record);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--ink);
+}
+
+.note-mark {
+  position: absolute;
+  bottom: 1.15rem;
+  left: 0.35rem;
+  margin: 0;
+}
+
+.note-mark pre {
+  margin: 0;
+  padding: 0;
+}
+
+.note-mark code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--blood);
 }
 
 /* =========================================================

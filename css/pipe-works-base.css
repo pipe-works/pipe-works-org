@@ -87,7 +87,7 @@ h1 {
   text-align: center;
   font-style: italic;
   color: var(--ink-faded);
-  margin-bottom: -1.5rem;
+  margin-bottom: -0.5rem;
 }
 
 h2, h3 {
