@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy with rsync
         run: |
-          rsync -avz --delete \
+          rsync -avz --delete --delete-excluded \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
             --include='*.html' \
             --include='css/' \
