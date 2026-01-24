@@ -95,8 +95,7 @@
   --quirk-x: -3.5rem;
   --quirk-y: 1.4rem;
   --quirk-rotate: -0.8deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )

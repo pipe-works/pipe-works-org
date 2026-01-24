@@ -3,7 +3,7 @@
  * Interactive story game with full screen reader support
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Elements
@@ -15,8 +15,14 @@
 
   // Scene flow
   const scenes = [
-    'scene-1', 'scene-2', 'scene-3', 'scene-4',
-    'scene-5', 'scene-6', 'scene-7', 'scene-8'
+    'scene-1',
+    'scene-2',
+    'scene-3',
+    'scene-4',
+    'scene-5',
+    'scene-6',
+    'scene-7',
+    'scene-8',
   ];
   let currentScene = -1;
 
@@ -29,7 +35,7 @@
       // Clear and re-set to ensure announcement triggers
       gameStatus.textContent = '';
       // Small delay ensures screen reader catches the change
-      setTimeout(function() {
+      setTimeout(function () {
         gameStatus.textContent = message;
       }, 50);
     }
@@ -53,7 +59,7 @@
    */
   function showScene(index) {
     // Hide all scenes first
-    scenes.forEach(function(id) {
+    scenes.forEach(function (id) {
       const el = document.getElementById(id);
       if (el) {
         el.classList.add('reveal-hidden');
@@ -71,14 +77,22 @@
 
         // Move focus to the new scene for screen reader users
         // Delay slightly to allow CSS transition to complete
-        setTimeout(function() {
+        setTimeout(function () {
           scene.focus();
         }, 100);
 
         // Find choice count for announcement
         const choices = scene.querySelectorAll('.choice');
         if (choices.length > 0) {
-          announce('Scene ' + (index + 1) + '. ' + choices.length + ' choice' + (choices.length > 1 ? 's' : '') + ' available. Use number keys or buttons to choose.');
+          announce(
+            'Scene ' +
+              (index + 1) +
+              '. ' +
+              choices.length +
+              ' choice' +
+              (choices.length > 1 ? 's' : '') +
+              ' available. Use number keys or buttons to choose.'
+          );
         }
       }
     }
@@ -96,7 +110,7 @@
   /**
    * Handle form submission - start the game
    */
-  loginForm.addEventListener('submit', function(e) {
+  loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     loginForm.classList.add('form-hidden');
 
@@ -104,7 +118,7 @@
     announce('The story begins. You stand before a door.');
 
     // Small delay so announcement completes before first scene
-    setTimeout(function() {
+    setTimeout(function () {
       showScene(0);
     }, 500);
   });
@@ -112,13 +126,13 @@
   /**
    * Handle choice button clicks - advance to next scene
    */
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     if (e.target.classList.contains('choice')) {
       const choiceText = e.target.textContent;
       announce('You chose: ' + choiceText);
 
       // Delay scene change slightly so choice announcement is heard
-      setTimeout(function() {
+      setTimeout(function () {
         nextScene();
       }, 300);
     }
@@ -127,7 +141,7 @@
   /**
    * Handle keyboard number keys for choices
    */
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     // Only respond to number keys 1-9 when game is active
     if (currentScene < 0) return;
 
@@ -143,5 +157,4 @@
       }
     }
   });
-
 })();

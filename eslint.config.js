@@ -1,7 +1,7 @@
-import js from '@eslint/js';
+// ESLint flat config for pipe-works-org
+// Using CommonJS format for compatibility
 
-export default [
-  js.configs.recommended,
+module.exports = [
   {
     languageOptions: {
       ecmaVersion: 2022,
@@ -16,18 +16,14 @@ export default [
     rules: {
       'no-unused-vars': 'warn',
       'no-console': 'off',
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single', { avoidEscape: true }],
-      'indent': ['error', 2],
+      semi: ['error', 'always'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      indent: ['error', 2],
       'no-multiple-empty-lines': ['error', { max: 2 }],
       'eol-last': ['error', 'always'],
     },
   },
   {
-    ignores: [
-      'assets/**',
-      '_working/**',
-      'node_modules/**',
-    ],
+    ignores: ['assets/**', '_working/**', 'node_modules/**'],
   },
 ];

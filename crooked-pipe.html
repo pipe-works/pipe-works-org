@@ -1,127 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>The Crooked Pipe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <title>The Crooked Pipe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="css/fonts.css" />
-  <link rel="stylesheet" href="css/pipe-works-base.css" />
-  <link rel="stylesheet" href="css/crooked-pipe.css" />
-</head>
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/pipe-works-base.css" />
+    <link rel="stylesheet" href="css/crooked-pipe.css" />
+  </head>
 
-<body>
-  <main class="sheet">
+  <body>
+    <main class="sheet">
+      <header class="masthead" id="top">
+        <h1>THE CROOKED PIPE</h1>
+        <p class="strapline">Tavern. Print room. Flooded cellar. Closed, but listening.</p>
+      </header>
 
-	<header class="masthead" id="top">
-	  <h1>THE CROOKED PIPE</h1>
-	  <p class="strapline">
-		Tavern. Print room. Flooded cellar. Closed, but listening.
-	  </p>
-	</header>
+      <figure class="door">
+        <video src="assets/images/optimized_output.mp4" autoplay loop muted playsinline></video>
+        <figcaption>The door is solid. The handle is worn smooth.</figcaption>
+      </figure>
 
-	<figure class="door">
-	  <video
-		src="assets/images/optimized_output.mp4"
-		autoplay
-		loop
-		muted
-		playsinline
-	  ></video>
-	  <figcaption>
-		The door is solid. The handle is worn smooth.
-	  </figcaption>
-	</figure>
+      <!-- Screen reader announcements -->
+      <div id="game-status" class="u-sr-only" role="status" aria-live="polite"></div>
 
-	<!-- Screen reader announcements -->
-	<div id="game-status" class="u-sr-only" role="status" aria-live="polite"></div>
+      <form class="login" id="login-form">
+        <label for="name">Name (optional)</label>
+        <input id="name" type="text" placeholder="Ink-stained, probably" />
 
-	<form class="login" id="login-form">
-	  <label for="name">Name (optional)</label>
-	  <input id="name" type="text" placeholder="Ink-stained, probably" />
+        <label for="password">Password (unlikely)</label>
+        <input id="password" type="password" />
 
-	  <label for="password">Password (unlikely)</label>
-	  <input id="password" type="password" />
+        <button type="submit" disabled id="enter-button">enter</button>
+      </form>
 
-	  <button type="submit" disabled id="enter-button">
-		enter
-	  </button>
-	</form>
+      <!-- Game scenes - one line at a time -->
+      <div
+        class="scenes-container"
+        aria-live="polite"
+        aria-atomic="true"
+        role="region"
+        aria-label="Story"
+      >
+        <section class="scene reveal-hidden" id="scene-1" tabindex="-1">
+          <p class="scene-text">> You knock.</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. Knock again</button>
+            <button type="button" class="choice" data-key="2">2. Wait</button>
+          </div>
+        </section>
 
-	<!-- Game scenes - one line at a time -->
-	<div class="scenes-container" aria-live="polite" aria-atomic="true" role="region" aria-label="Story">
-	<section class="scene reveal-hidden" id="scene-1" tabindex="-1">
-	  <p class="scene-text">> You knock.</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. Knock again</button>
-		<button type="button" class="choice" data-key="2">2. Wait</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-2" tabindex="-1">
+          <p class="scene-text">> Someone inside knocks back.</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. Say something</button>
+            <button type="button" class="choice" data-key="2">2. Listen closer</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-2" tabindex="-1">
-	  <p class="scene-text">> Someone inside knocks back.</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. Say something</button>
-		<button type="button" class="choice" data-key="2">2. Listen closer</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-3" tabindex="-1">
+          <p class="scene-text">> A voice, muffled by wood and age:</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. Lean in</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-3" tabindex="-1">
-	  <p class="scene-text">> A voice, muffled by wood and age:</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. Lean in</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-4" tabindex="-1">
+          <p class="scene-text aside">"We're fishing."</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. Fishing?</button>
+            <button type="button" class="choice" data-key="2">2. When will you be back?</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-4" tabindex="-1">
-	  <p class="scene-text aside">"We're fishing."</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. Fishing?</button>
-		<button type="button" class="choice" data-key="2">2. When will you be back?</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-5" tabindex="-1">
+          <p class="scene-text aside">"Back when the tide turns."</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. And if it doesn't?</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-5" tabindex="-1">
-	  <p class="scene-text aside">"Back when the tide turns."</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. And if it doesn't?</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-6" tabindex="-1">
+          <p class="scene-text aside">"Or when something bites."</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. I see.</button>
+            <button type="button" class="choice" data-key="2">2. I'll wait.</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-6" tabindex="-1">
-	  <p class="scene-text aside">"Or when something bites."</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. I see.</button>
-		<button type="button" class="choice" data-key="2">2. I'll wait.</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-7" tabindex="-1">
+          <p class="scene-text">> Silence. Then, scratching. A note slides under the door.</p>
+          <div class="scene-choices">
+            <button type="button" class="choice" data-key="1">1. Pick it up</button>
+          </div>
+        </section>
 
-	<section class="scene reveal-hidden" id="scene-7" tabindex="-1">
-	  <p class="scene-text">> Silence. Then, scratching. A note slides under the door.</p>
-	  <div class="scene-choices">
-		<button type="button" class="choice" data-key="1">1. Pick it up</button>
-	  </div>
-	</section>
+        <section class="scene reveal-hidden" id="scene-8" tabindex="-1">
+          <div class="note">
+            <p>
+              No keys issued today.
+              <br />
+              No names recorded.
+              <br />
+              You were still seen.
+            </p>
+            <figure class="note-mark">
+              <pre><code>│_</code></pre>
+            </figure>
+          </div>
+          <p class="back-link">
+            <a href="three-pillars.html">← Back through the three things</a>
+          </p>
+        </section>
+      </div>
+    </main>
 
-	<section class="scene reveal-hidden" id="scene-8" tabindex="-1">
-	  <div class="note">
-		<p>
-		  No keys issued today.<br />
-		  No names recorded.<br />
-		  You were still seen.
-		</p>
-		<figure class="note-mark">
-		  <pre><code>│_</code></pre>
-		</figure>
-	  </div>
-	  <p class="back-link">
-		<a href="three-pillars.html">← Back through the three things</a>
-	  </p>
-	</section>
-	</div>
-
-  </main>
-
-  <script src="js/crooked-pipe.js"></script>
-</body>
+    <script src="js/crooked-pipe.js"></script>
+  </body>
 </html>

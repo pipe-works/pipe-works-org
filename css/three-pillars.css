@@ -33,8 +33,7 @@
   --quirk-x: 10rem;
   --quirk-y: -2rem;
   --quirk-rotate: 0deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
@@ -45,8 +44,7 @@
   --quirk-x: -1rem;
   --quirk-y: -2.5rem;
   --quirk-rotate: 0deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
@@ -57,8 +55,7 @@
   --quirk-x: -1rem;
   --quirk-y: -2.5rem;
   --quirk-rotate: 0deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
@@ -77,8 +74,7 @@
   --quirk-x: 4rem;
   --quirk-y: -6.1rem;
   --quirk-rotate: -0.5deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
@@ -89,8 +85,7 @@
   --quirk-x: -7.3rem;
   --quirk-y: -6rem;
   --quirk-rotate: 0.3deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
@@ -101,8 +96,7 @@
   --quirk-x: -6rem;
   --quirk-y: -5.2rem;
   --quirk-rotate: -0.2deg;
-  transform:
-    translate(
+  transform: translate(
       calc(var(--quirk-x) * var(--quirk-intensity)),
       calc(var(--quirk-y) * var(--quirk-intensity))
     )
