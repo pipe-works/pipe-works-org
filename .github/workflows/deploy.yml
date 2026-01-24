@@ -35,19 +35,15 @@ jobs:
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
             --include='*.html' \
-            --include='css/***' \
-            --include='js/***' \
-            --include='assets/***' \
+            --include='css/' \
+            --include='css/**' \
+            --include='js/' \
+            --include='js/**' \
+            --include='assets/' \
+            --include='assets/**' \
             --exclude='assets/fonts/**/OFL.txt' \
             --exclude='assets/fonts/**/LICENSE.txt' \
-            --exclude='.*' \
-            --exclude='_working/***' \
-            --exclude='*.md' \
-            --exclude='*.json' \
-            --exclude='*.yaml' \
-            --exclude='*.txt' \
-            --exclude='node_modules/***' \
-            --exclude='.github/***' \
+            --exclude='*' \
             ./ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/
 
       - name: Verify deployment
