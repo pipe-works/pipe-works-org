@@ -1,0 +1,51 @@
+# Deploy to Mythic Beasts on merge to main
+# Only deploys production files (HTML, CSS, JS, fonts, images)
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    # Only deploy if CI passes (optional - remove if you want independent deploys)
+    needs: []
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.MB_DEPLOY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            --include='*.html' \
+            --include='css/***' \
+            --include='js/***' \
+            --include='assets/***' \
+            --exclude='assets/fonts/**/OFL.txt' \
+            --exclude='assets/fonts/**/LICENSE.txt' \
+            --exclude='.*' \
+            --exclude='_working/***' \
+            --exclude='*.md' \
+            --exclude='*.json' \
+            --exclude='*.yaml' \
+            --exclude='*.txt' \
+            --exclude='node_modules/***' \
+            --exclude='.github/***' \
+            ./ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/
+
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "ls -la ${{ secrets.REMOTE_PATH }}/"
