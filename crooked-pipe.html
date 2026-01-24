@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Crooked Pipe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/shared-base.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <main class="sheet">
+
+	<header class="masthead" id="top">
+	  <h1>THE CROOKED PIPE</h1>
+	  <p class="strapline">
+		Tavern. Print room. Flooded cellar.<br />
+		Closed, but listening.
+	  </p>
+	</header>
+
+	<figure class="door">
+	  <img
+		src="assets/images/the_crooked_pipe.jpg"
+		alt="A heavy wooden door, scarred by ink, age, and use"
+	  />
+	  <figcaption>
+		The door is solid. The handle is worn smooth.
+	  </figcaption>
+	</figure>
+
+	<section class="notice reveal-hidden" id="knock-section">
+	  <p>
+		You knock. Someone inside knocks back.
+	  </p>
+	</section>
+
+	<form class="login" id="login-form">
+	  <label for="name">Name (optional)</label>
+	  <input id="name" type="text" placeholder="Ink-stained, probably" />
+
+	  <label for="password">Password (unlikely)</label>
+	  <input id="password" type="password" />
+
+	  <button type="submit" disabled id="enter-button">
+		Enter
+	  </button>
+	</form>
+
+	<section class="notice reveal-hidden" id="fishing-section">
+	  <p class="aside">
+		We're fishing.<br />
+		Back when the tide turns.<br />
+		Or when something bites.
+	  </p>
+	</section>
+
+	<p class="back-link reveal-hidden" id="back-link">
+	  <a href="three-pillars.html">← Back through the three things</a>
+	</p>
+
+	<footer class="imprint reveal-hidden" id="imprint-section">
+	  <p>
+		No keys issued today.<br />
+		No names recorded.<br />
+		You were still seen.
+	  </p>
+	</footer>
+
+  </main>
+
+  <script>
+	// Enable the Enter button when either input has content
+	const nameInput = document.getElementById('name');
+	const passwordInput = document.getElementById('password');
+	const enterButton = document.getElementById('enter-button');
+	const loginForm = document.getElementById('login-form');
+
+	function checkInputs() {
+	  const hasName = nameInput.value.trim().length > 0;
+	  const hasPassword = passwordInput.value.trim().length > 0;
+	  enterButton.disabled = !(hasName || hasPassword);
+	}
+
+	nameInput.addEventListener('input', checkInputs);
+	passwordInput.addEventListener('input', checkInputs);
+
+	// Handle form submission and trigger reveal animation
+	loginForm.addEventListener('submit', function(e) {
+	  e.preventDefault();
+
+	  // Get all the hidden reveal sections in order
+	  const revealElements = [
+		document.getElementById('knock-section'),
+		document.getElementById('fishing-section'),
+		document.getElementById('back-link'),
+		document.getElementById('imprint-section')
+	  ];
+
+	  // Remove the reveal-hidden class and add reveal-item class to trigger animation
+	  revealElements.forEach((element, index) => {
+		element.classList.remove('reveal-hidden');
+		element.classList.add('reveal-item');
+		// Set the animation delay based on index
+		element.style.setProperty('--delay-index', index);
+	  });
+
+	  // Hide the form after submission
+	  loginForm.style.display = 'none';
+	});
+  </script>
+</body>
+</html>
