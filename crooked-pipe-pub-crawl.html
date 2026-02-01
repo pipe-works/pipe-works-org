@@ -485,13 +485,13 @@
           system: 'Data as Authority — zones/*.json',
           description:
             'Bare stone walls and stacked ledgers. Everything above rests on what is written here. Nothing here knows why it matters.',
-          exits: { up: 'smoking_room', north: 'upper_landing' },
+          exits: { up: 'smoking_room', north: 'dark_passage' },
           order: 8,
           pedagogy:
             "Data is upstream of meaning. The zone files don't know they define a pub and a street. They only know rooms, exits, identifiers. Everything else is interpretation.",
         },
-        upper_landing: {
-          name: 'Upper Landing',
+        dark_passage: {
+          name: 'The Dark Passage',
           system: 'Broadcast Without Promise — bus.py',
           description:
             'Footsteps echo. Messages pass through the air. Someone might be listening. No promises are made.',
@@ -505,7 +505,7 @@
           system: 'Handlers & Reactions — events.py',
           description:
             'A corner booth with old notes carved into the table. Some things reacted. Others did not. Silence is recorded either way.',
-          exits: { east: 'upper_landing', up: 'spawn' }, // Server uses "spawn" for crooked_pipe
+          exits: { east: 'dark_passage', up: 'spawn' }, // Server uses "spawn" for crooked_pipe
           order: 10,
           pedagogy:
             "Handlers are optional. Events fire whether anyone listens or not. Silence is part of the system. What didn't happen matters as much as what did.",
