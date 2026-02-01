@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Crooked Pipe Pub Crawl | pipe-works</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/pipe-works-base.css">
+    <style>
+        /* =========================================================
+           Pub Crawl Specific Styles
+           Built on pipe-works-base.css foundation
+           ========================================================= */
+
+        /* Override sheet for wider crawl layout */
+        .sheet {
+            max-width: 52rem;
+        }
+
+        /* Login Section */
+        .login-section {
+            margin-bottom: 2rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .form-group label {
+            font-family: var(--font-record);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faded);
+        }
+
+        .form-group input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--ink-faded);
+            background: var(--paper);
+            font-family: var(--font-record);
+            font-size: 0.9rem;
+            width: 210px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--ink);
+            box-shadow: inset 0 0 0 1px var(--ink);
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--ink);
+            background: var(--paper);
+            font-family: var(--font-record);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn--blood {
+            border-color: var(--blood);
+            color: var(--blood);
+        }
+
+        .btn--blood:hover {
+            background: var(--blood);
+            color: var(--paper);
+        }
+
+        .status-message {
+            font-family: var(--font-record);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .status-message--error {
+            color: var(--blood);
+        }
+
+        .status-message--success {
+            color: var(--ink);
+        }
+
+        /* Game Section - hidden until logged in */
+        .game-section {
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+        }
+
+        /* Room Display */
+        .room-display {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border: 1px solid var(--ink-faded);
+            background: linear-gradient(135deg, var(--paper) 0%, var(--paper-muted, #ebe5d6) 100%);
+        }
+
+        .room-name {
+            font-family: var(--font-masthead);
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--blood);
+            padding-bottom: 0.25rem;
+        }
+
+        .room-system {
+            font-family: var(--font-record);
+            font-size: 0.75rem;
+            color: var(--ink-faded);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .room-description {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .room-exits {
+            margin-top: 1rem;
+            font-family: var(--font-record);
+            font-size: 0.85rem;
+            color: var(--ink-faded);
+        }
+
+        .room-exits .exit {
+            display: inline-block;
+            margin-right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--ink-faded);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .room-exits .exit:hover {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+
+        .room-exits .shortcut {
+            text-decoration: underline;
+        }
+
+        /* Position Indicator - minimal squares */
+        .position-indicator {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .position-dot {
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--ink-faded);
+            opacity: 0.3;
+        }
+
+        .position-dot.current {
+            background: var(--blood);
+            border-color: var(--blood);
+            opacity: 1;
+        }
+
+        .position-dot.visited {
+            background: var(--ink-faded);
+            opacity: 0.6;
+        }
+
+        /* Crawl Progress */
+        .crawl-progress {
+            margin: 0.5rem 0;
+            font-family: var(--font-record);
+            font-size: 0.75rem;
+            text-align: center;
+            color: var(--ink-faded);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Pedagogical Notes */
+        .pedagogy-note {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid var(--blood);
+            background: rgba(122, 31, 31, 0.05);
+            font-family: var(--font-record);
+            font-size: 0.8rem;
+            color: var(--ink-faded);
+        }
+
+        .pedagogy-note strong {
+            color: var(--ink);
+        }
+
+        /* Footer nav */
+        .crawl-nav {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--ink-faded);
+        }
+
+        .crawl-nav a {
+            font-family: var(--font-record);
+            font-size: 0.85rem;
+            border-bottom: 1px dotted var(--ink-faded);
+        }
+
+        .crawl-nav a:hover {
+            color: var(--blood);
+            border-color: var(--blood);
+        }
+
+        /* Hidden login when logged in */
+        .login-section.hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .sheet {
+                padding: 1.5rem 1rem;
+            }
+
+            .login-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-group input {
+                width: 100%;
+            }
+
+            .ascii-map {
+                font-size: 0.55rem;
+            }
+
+            .key-grid {
+                grid-template-columns: repeat(5, 35px);
+                grid-template-rows: repeat(2, 35px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="sheet">
+        <!-- Header -->
+        <header class="masthead">
+            <h1>THE CROOKED PIPE</h1>
+            <p class="strapline">A walkable execution trace disguised as a pub.</p>
+        </header>
+
+        <!-- Introduction -->
+        <section class="notice">
+            <p>
+                This crawl exists to demonstrate — safely and visibly — the pipe-works architecture.
+                Movement is the only interaction. Meaning is the only consequence.
+            </p>
+        </section>
+
+        <!-- Login Section -->
+        <section class="login-section" id="loginSection">
+            <h2>ENTER THE PUB</h2>
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="serverUrl">Server</label>
+                    <input type="text" id="serverUrl" placeholder="http://localhost:8000">
+                </div>
+                <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" id="username" placeholder="goblin">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="secret">
+                </div>
+                <button class="btn" onclick="login()">Enter</button>
+            </div>
+            <p class="status-message" id="loginStatus"></p>
+        </section>
+
+        <!-- Game Section (hidden until login) -->
+        <section class="game-section" id="gameSection">
+            <!-- Player Status -->
+            <div class="rule">
+                <p style="margin: 0;">
+                    <strong id="playerName">—</strong> is walking the crawl.
+                    <span style="float: right;">
+                        <button class="btn" onclick="recall()" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; margin-right: 0.5rem;" title="Return to zone spawn">Scurry</button>
+                        <button class="btn btn--blood" onclick="logout()" style="padding: 0.25rem 0.5rem; font-size: 0.7rem;">Leave</button>
+                    </span>
+                </p>
+            </div>
+
+            <!-- Room Display -->
+            <div class="room-display" id="roomDisplay">
+                <div class="room-name" id="roomName">—</div>
+                <div class="room-system" id="roomSystem">—</div>
+                <p class="room-description" id="roomDescription">—</p>
+                <div class="room-exits" id="roomExits">—</div>
+            </div>
+
+            <!-- Position Indicator - minimal squares -->
+            <div class="position-indicator" id="positionIndicator"></div>
+
+            <!-- Crawl Progress - text only, position dots show visual -->
+            <div class="crawl-progress">
+                <span>ROOM <strong id="progressCount">0</strong> OF 11</span>
+            </div>
+
+            <!-- Pedagogical Note -->
+            <div class="pedagogy-note" id="pedagogyNote">
+                <strong>You are here before you arrived.</strong>
+                By the time you read this, the command has been issued, permissions checked,
+                world truth resolved. This room does not cause behaviour. It reveals provenance.
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="imprint">
+            <nav class="crawl-nav">
+                <a href="index.html">← Back to pipe-works</a>
+            </nav>
+            <p class="margin-note">
+                The Crooked Pipe Pub Crawl is a teaching tool that never explains itself out loud.
+                Eleven rooms. One verb. No slides.
+            </p>
+        </footer>
+    </main>
+
+    <script>
+        /* =========================================================
+           The Crooked Pipe Pub Crawl
+           A walkable execution trace for pipe-works architecture
+
+           This demo connects to the PipeWorks MUD Server REST API
+           and walks players through rooms that map to system components.
+           ========================================================= */
+
+        // =========================================================
+        // ROOM DATA
+        // Each room maps to a pipe-works architectural component
+        // =========================================================
+        // ROOM_ALIASES maps server room IDs to canonical display IDs
+        // The server uses "spawn" as the starting room, but we display it as "crooked_pipe"
+        const ROOM_ALIASES = {
+            spawn: "crooked_pipe"
+        };
+
+        const ROOMS = {
+            // =========================================================
+            // COBBLED STREET - The Outside World
+            // =========================================================
+            street_middle: {
+                name: "Cobbled Street",
+                system: "The Boundary — where systems meet the world",
+                description: "A narrow street paved with uneven cobblestones. A battered sign creaks above a doorway to the south, depicting a bent smoking pipe. Gas lamps flicker weakly in the fog.",
+                exits: { north: "street_north", south: "crooked_pipe", west: "street_west" },
+                order: 0,
+                pedagogy: "You stand at the boundary. Every system has an edge where it meets the world. This is where requests originate, before they become commands."
+            },
+            street_north: {
+                name: "North End of Cobbled Street",
+                system: "Dead Ends — constraints of scope",
+                description: "The street narrows here, buildings leaning close overhead. A dead end, blocked by a collapsed cart that no one has bothered to move. Probably for years.",
+                exits: { south: "street_middle" },
+                order: 1,
+                pedagogy: "Not every path leads somewhere. Systems have boundaries. Some are by design. Others are by neglect. This cart has been here long enough to become architecture."
+            },
+            street_west: {
+                name: "West End of Cobbled Street",
+                system: "The Undefined — here be dragons",
+                description: "The cobblestones give way to mud here. The street continues into darkness, but something about the shadows suggests you shouldn't. Not yet.",
+                exits: { east: "street_middle" },
+                order: 2,
+                pedagogy: "The undefined is not empty. It is waiting. Every system has edges where behaviour is unspecified. Walking there is possible. Walking back is not guaranteed."
+            },
+            // =========================================================
+            // THE CROOKED PIPE - The Pub Crawl
+            // =========================================================
+            crooked_pipe: {
+                name: "The Crooked Pipe",
+                system: "Orientation — the lie of simplicity",
+                description: "A low-ceilinged goblin pub full of smoke, murmurs, and bad ideas. Nothing important happens here. At least, nothing obvious. A battered door leads west to the street.",
+                exits: { north: "front_parlour", down: "quiet_booth", west: "street_middle" },
+                order: 3,
+                pedagogy: "The entry point. This room looks simple because it hides everything below. All complexity is buried beneath the surface.",
+                serverId: "spawn"  // Server uses "spawn" as the room ID
+            },
+            front_parlour: {
+                name: "Front Parlour",
+                system: "Routing & Ingress — routes.py",
+                description: "A tidy room near the door. Words arrive here, are glanced at, and quietly passed along. No judgement is made. No action is taken.",
+                exits: { south: "crooked_pipe", east: "back_parlour" },
+                order: 4,
+                pedagogy: "Routes do not decide. They receive, they forward, they record. The judgement happens elsewhere. This room only knows where things go."
+            },
+            back_parlour: {
+                name: "Back Parlour",
+                system: "Permissions & Identity — permissions.py",
+                description: "A narrow space with a watchful goblin at the door. Some are allowed to speak. Others are turned away. Nothing else happens here.",
+                exits: { west: "front_parlour", south: "snug" },
+                order: 5,
+                pedagogy: "Permissions do not act. They grant or deny. The action, if permitted, happens later. This room only knows who may pass."
+            },
+            snug: {
+                name: "The Snug",
+                system: "Command Interpretation — engine.py",
+                description: "A small, serious room. This is where loose language stops and intent becomes something the system can recognise.",
+                exits: { north: "back_parlour", west: "smoking_room" },
+                order: 6,
+                pedagogy: "The engine interprets, it does not understand. 'North' becomes a direction. 'Look' becomes a query. Meaning is mechanical here."
+            },
+            smoking_room: {
+                name: "Smoking Room",
+                system: "World Truth & Invariants — world.py",
+                description: "Cold, solid, and unromantic. The world is what it is here. Reasons are irrelevant. Truth is enforced.",
+                exits: { east: "snug", down: "cellar" },
+                order: 7,
+                pedagogy: "The world enforces truth without context. It does not care why you moved. It only knows whether you can. Reality is checked here."
+            },
+            cellar: {
+                name: "The Cellar",
+                system: "Data as Authority — zones/*.json",
+                description: "Bare stone walls and stacked ledgers. Everything above rests on what is written here. Nothing here knows why it matters.",
+                exits: { up: "smoking_room", north: "upper_landing" },
+                order: 8,
+                pedagogy: "Data is upstream of meaning. The zone files don't know they define a pub and a street. They only know rooms, exits, identifiers. Everything else is interpretation."
+            },
+            upper_landing: {
+                name: "Upper Landing",
+                system: "Broadcast Without Promise — bus.py",
+                description: "Footsteps echo. Messages pass through the air. Someone might be listening. No promises are made.",
+                exits: { south: "cellar", west: "quiet_booth" },
+                order: 9,
+                pedagogy: "The event bus announces. It does not coordinate. It does not wait for responses. Something happened. That fact is published. Who listens is not its concern."
+            },
+            quiet_booth: {
+                name: "Quiet Booth",
+                system: "Handlers & Reactions — events.py",
+                description: "A corner booth with old notes carved into the table. Some things reacted. Others did not. Silence is recorded either way.",
+                exits: { east: "upper_landing", up: "spawn" },  // Server uses "spawn" for crooked_pipe
+                order: 10,
+                pedagogy: "Handlers are optional. Events fire whether anyone listens or not. Silence is part of the system. What didn't happen matters as much as what did."
+            }
+        };
+
+        // Get canonical room ID for display purposes
+        // This ensures "spawn" is displayed as "crooked_pipe" in the UI
+        function getDisplayRoom(roomId) {
+            return ROOM_ALIASES[roomId] || roomId;
+        }
+
+        // =========================================================
+        // STATE
+        // =========================================================
+        let sessionId = null;       // Current session ID from server
+        let currentRoom = null;     // Current room ID
+        let username = null;        // Player's username
+        let serverUrl = null;       // API server URL
+        let visitedRooms = new Set(); // Track visited rooms for progress
+
+        // =========================================================
+        // API HELPERS
+        // =========================================================
+
+        /**
+         * Make an API call to the MUD server
+         * Handles JSON encoding/decoding and error responses
+         */
+        async function apiCall(endpoint, method = 'GET', body = null) {
+            const options = {
+                method,
+                headers: { 'Content-Type': 'application/json' }
+            };
+            if (body) {
+                options.body = JSON.stringify(body);
+            }
+            const response = await fetch(`${serverUrl}${endpoint}`, options);
+            return response.json();
+        }
+
+        // =========================================================
+        // AUTHENTICATION
+        // =========================================================
+
+        /**
+         * Login to the MUD server
+         * On success, shows game section and fetches initial status
+         */
+        async function login() {
+            // Get form values
+            serverUrl = document.getElementById('serverUrl').value || 'http://localhost:8000';
+            username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validate inputs
+            if (!username || !password) {
+                showStatus('Name and password required.', true);
+                return;
+            }
+
+            try {
+                showStatus('Entering the pub...');
+                const result = await apiCall('/login', 'POST', { username, password });
+
+                if (result.success) {
+                    // Store session and update UI
+                    sessionId = result.session_id;
+                    document.getElementById('loginSection').classList.add('hidden');
+                    document.getElementById('gameSection').classList.add('active');
+                    document.getElementById('playerName').textContent = username;
+
+                    // Get initial room status
+                    await updateStatus();
+                } else {
+                    showStatus(result.message || 'Could not enter.', true);
+                }
+            } catch (error) {
+                showStatus('Connection failed. Is the server running?', true);
+                console.error('Login error:', error);
+            }
+        }
+
+        /**
+         * Logout from the MUD server
+         * Resets UI to login state
+         */
+        async function logout() {
+            if (sessionId) {
+                try {
+                    await apiCall('/logout', 'POST', { session_id: sessionId });
+                } catch (error) {
+                    console.error('Logout error:', error);
+                }
+            }
+
+            // Reset state
+            sessionId = null;
+            currentRoom = null;
+            visitedRooms.clear();
+
+            // Reset UI
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('gameSection').classList.remove('active');
+            showStatus('');
+        }
+
+        /**
+         * Show status message in login section
+         */
+        function showStatus(message, isError = false) {
+            const el = document.getElementById('loginStatus');
+            el.textContent = message;
+            el.className = 'status-message' + (isError ? ' status-message--error' : ' status-message--success');
+        }
+
+        // =========================================================
+        // GAME STATE
+        // =========================================================
+
+        /**
+         * Resolve a server room ID to a canonical display ID
+         * Handles aliases like "spawn" -> "crooked_pipe"
+         */
+        function resolveRoomId(serverRoomId) {
+            return ROOM_ALIASES[serverRoomId] || serverRoomId;
+        }
+
+        /**
+         * Fetch current status from server and update display
+         */
+        async function updateStatus() {
+            if (!sessionId) return;
+
+            try {
+                const result = await apiCall(`/status/${sessionId}`);
+                // Resolve server room ID to canonical display ID
+                currentRoom = resolveRoomId(result.current_room);
+
+                // Track visited rooms
+                if (currentRoom && ROOMS[currentRoom]) {
+                    visitedRooms.add(currentRoom);
+                }
+
+                updateRoomDisplay();
+                updateMap();
+                updateProgress();
+            } catch (error) {
+                console.error('Status error:', error);
+            }
+        }
+
+        /**
+         * Update the room display with current room info
+         */
+        function updateRoomDisplay() {
+            const room = ROOMS[currentRoom];
+            if (!room) {
+                // Fallback for rooms not in our crawl data
+                document.getElementById('roomName').textContent = currentRoom || '—';
+                document.getElementById('roomSystem').textContent = 'Unknown territory';
+                document.getElementById('roomDescription').textContent = 'You have wandered off the crawl.';
+                document.getElementById('roomExits').textContent = '';
+                document.getElementById('pedagogyNote').innerHTML = '<strong>Off the map.</strong> This room is not part of the pub crawl.';
+                return;
+            }
+
+            // Update room info
+            document.getElementById('roomName').textContent = room.name;
+            document.getElementById('roomSystem').textContent = room.system;
+            document.getElementById('roomDescription').textContent = room.description;
+
+            // Build exits display with underlined shortcut keys and click handlers
+            const exits = Object.keys(room.exits).map(dir => {
+                const label = dir.toUpperCase();
+                const shortcut = label.charAt(0);
+                const rest = label.slice(1);
+                return `<span class="exit" onclick="move('${dir}')"><span class="shortcut">${shortcut}</span>${rest}</span>`;
+            }).join('');
+            document.getElementById('roomExits').innerHTML = 'Exits: ' + exits;
+
+            // Update pedagogical note
+            document.getElementById('pedagogyNote').innerHTML = `<strong>Room ${room.order + 1} of 8.</strong> ${room.pedagogy}`;
+        }
+
+        /**
+         * Update the ASCII map display
+         * Highlights current room and shows visited/unvisited state
+         */
+        /**
+         * Update position indicator - minimal squares showing current location
+         * No topology, no connections - just "you are here"
+         */
+        function updateMap() {
+            const orderedRooms = Object.keys(ROOMS).sort((a, b) => ROOMS[a].order - ROOMS[b].order);
+
+            const dots = orderedRooms.map(roomId => {
+                let cls = 'position-dot';
+                if (currentRoom === roomId) {
+                    cls += ' current';
+                } else if (visitedRooms.has(roomId)) {
+                    cls += ' visited';
+                }
+                return `<div class="${cls}" title="${ROOMS[roomId].name}"></div>`;
+            }).join('');
+
+            document.getElementById('positionIndicator').innerHTML = dots;
+        }
+
+        /**
+         * Update progress count
+         */
+        function updateProgress() {
+            const room = ROOMS[currentRoom];
+            const roomNumber = room ? room.order + 1 : 0;
+            document.getElementById('progressCount').textContent = roomNumber;
+        }
+
+        // =========================================================
+        // MOVEMENT
+        // =========================================================
+
+        /**
+         * Move in the specified direction
+         * Sends command to server and updates display
+         */
+        async function move(direction) {
+            if (!sessionId) return;
+
+            // Check if direction is valid
+            const room = ROOMS[currentRoom];
+            if (room && !room.exits[direction]) {
+                return; // No exit in that direction
+            }
+
+            try {
+                const result = await apiCall('/command', 'POST', {
+                    session_id: sessionId,
+                    command: direction
+                });
+
+                // Update status regardless of success
+                await updateStatus();
+            } catch (error) {
+                console.error('Move error:', error);
+            }
+        }
+
+        /**
+         * Recall to zone spawn point
+         * The goblin's way home - vanish in a puff of smoke
+         */
+        async function recall() {
+            if (!sessionId) return;
+
+            try {
+                const result = await apiCall('/command', 'POST', {
+                    session_id: sessionId,
+                    command: 'recall'
+                });
+
+                // Update status regardless of success
+                await updateStatus();
+            } catch (error) {
+                console.error('Recall error:', error);
+            }
+        }
+
+        // =========================================================
+        // KEYBOARD CONTROLS
+        // =========================================================
+
+        /**
+         * Handle keyboard input for movement
+         * NESW for cardinal directions, U/D for up/down
+         */
+        document.addEventListener('keydown', (event) => {
+            // Only handle if logged in and not in an input field
+            if (!sessionId) return;
+            if (event.target.tagName === 'INPUT') return;
+
+            const keyMap = {
+                'n': 'north', 'N': 'north',
+                's': 'south', 'S': 'south',
+                'e': 'east',  'E': 'east',
+                'w': 'west',  'W': 'west',
+                'u': 'up',    'U': 'up',
+                'd': 'down',  'D': 'down'
+            };
+
+            const direction = keyMap[event.key];
+            if (direction) {
+                event.preventDefault();
+                move(direction);
+            }
+        });
+
+        // =========================================================
+        // INITIALIZATION
+        // =========================================================
+
+        // Set default server URL on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('serverUrl').value = 'http://localhost:8000';
+
+            // Initialize empty map and progress
+            updateMap();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
