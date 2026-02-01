@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/pipe-works/pipe-works-org/compare/v0.1.2...v0.1.3) (2026-02-01)
+
+
+### Features
+
+* add interactive pub crawl MUD client ([d88404f](https://github.com/pipe-works/pipe-works-org/commit/d88404f1ec5bd38082af93cab97f26290c8bb768))
+
 ## [0.1.2](https://github.com/pipe-works/pipe-works-org/compare/v0.1.1...v0.1.2) (2026-01-24)
 
 
