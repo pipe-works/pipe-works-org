@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/pipe-works/pipe-works-org/compare/v0.1.3...v0.1.4) (2026-02-01)
+
+
+### Bug Fixes
+
+* rename upper_landing to dark_passage ([a0a8ad6](https://github.com/pipe-works/pipe-works-org/commit/a0a8ad6f8fec78847020949e0a3baa15dbd8d246))
+
 ## [0.1.3](https://github.com/pipe-works/pipe-works-org/compare/v0.1.2...v0.1.3) (2026-02-01)
 
 
