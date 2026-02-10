@@ -21,24 +21,25 @@ npx http-server                    # Node server at localhost:8080
 
 ### Pages
 
-- `index.html` — Main landing page with masthead and navigation
-- `crooked-pipe.html` — Interactive reveal page with form-triggered animations
-- `three-pillars.html` — Philosophy/process page with ASCII art stamps
-- `goblin-laws.html` — Extended laws document with categorized sections
+- `site/index.html` — Main landing page with masthead and navigation
+- `site/explore/pub-crawl/index.html` — Pub crawl experience
+- `site/explore/pub-crawl/crooked-pipe.html` — Interactive reveal page with form-triggered animations
+- `site/ramblings/chalkboard.html` — Philosophy/process page with ASCII art stamps
+- `site/ramblings/notices.html` — Extended laws document with categorized sections
 
 ### CSS Structure
 
-- `css/fonts.css` — @font-face declarations for locally-served WOFF2 fonts
-- `css/pipe-works-base.css` — Unified foundation: tokens, reset, typography, common components
-- `css/index.css` — Index page (actions list, crooked-pipe link, footer positioning)
-- `css/crooked-pipe.css` — Crooked Pipe page (door image, login form, interactive story)
-- `css/three-pillars.css` — Three Pillars page (pillar positioning)
-- `css/goblin-laws.css` — Goblin Laws page (blockquotes, margin positioning)
+- `site/css/fonts.css` — @font-face declarations for locally-served WOFF2 fonts
+- `site/css/pipe-works-base.css` — Unified foundation: tokens, reset, typography, common components
+- `site/css/index.css` — Index page (actions list, crooked-pipe link, footer positioning)
+- `site/css/crooked-pipe.css` — Crooked Pipe page (door image, login form, interactive story)
+- `site/css/three-pillars.css` — Three Pillars page (pillar positioning)
+- `site/css/goblin-laws.css` — Goblin Laws page (blockquotes, margin positioning)
 
 ### Assets
 
-- `assets/fonts/` — Six font families (Crimson Text, Libre Baskerville, IM Fell English, Courier Prime, Special Elite) with OFL licenses
-- `assets/images/` — Static images
+- `site/assets/fonts/` — Six font families (Crimson Text, Libre Baskerville, IM Fell English, Courier Prime, Special Elite) with OFL licenses
+- `site/assets/images/` — Static images
 
 ## Design System
 

@@ -1,5 +1,5 @@
 # Deploy to Mythic Beasts on merge to main
-# Only deploys production files (HTML, CSS, JS, fonts, images)
+# Publishes the site/ directory as the web root
 
 name: Deploy
 
@@ -34,17 +34,9 @@ jobs:
         run: |
           rsync -avz --delete --delete-excluded \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-            --include='*.html' \
-            --include='css/' \
-            --include='css/**' \
-            --include='js/' \
-            --include='js/**' \
-            --include='assets/' \
-            --include='assets/**' \
             --exclude='assets/fonts/**/OFL.txt' \
             --exclude='assets/fonts/**/LICENSE.txt' \
-            --exclude='*' \
-            ./ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/
+            ./site/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/
 
       - name: Verify deployment
         run: |
