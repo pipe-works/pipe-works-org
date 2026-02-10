@@ -53,7 +53,7 @@ jobs:
 
       - name: Validate HTML files
         run: |
-          html-validate "*.html" --formatter stylish || true
+          html-validate "site/**/*.html" --formatter stylish || true
         # Using || true to not fail on warnings, only errors
 
   accessibility:
@@ -74,7 +74,7 @@ jobs:
 
       - name: Start local server
         run: |
-          npx http-server -p 8080 &
+          npx http-server site -p 8080 &
           sleep 3
 
       - name: Run accessibility tests
