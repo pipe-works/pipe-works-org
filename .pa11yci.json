@@ -7,8 +7,8 @@
   },
   "urls": [
     "http://localhost:8080/index.html",
-    "http://localhost:8080/crooked-pipe.html",
-    "http://localhost:8080/three-pillars.html",
-    "http://localhost:8080/goblin-laws.html"
+    "http://localhost:8080/explore/pub-crawl/index.html",
+    "http://localhost:8080/ramblings/chalkboard.html",
+    "http://localhost:8080/ramblings/notices.html"
   ]
 }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>pipe-works.org — API Experiments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/pipe-works-base.css" />
+  </head>
+
+  <body>
+    <main class="sheet">
+      <header class="masthead" id="top">
+        <h1>API EXPERIMENTS</h1>
+        <p class="strapline">Requests, responses, and field notes.</p>
+      </header>
+
+      <section class="notice">
+        <p>Snippets from the PipeWorks MUD server, documented in public.</p>
+        <p class="small">
+          Session auth uses
+          <code>session_id</code>
+          in the body, query string, or path depending on the endpoint.
+        </p>
+        <p>
+          <a href="../index.html">← Back to explore</a>
+        </p>
+      </section>
+
+      <section class="ledger">
+        <h3>BASE URL</h3>
+        <p>Set the server once and reuse it.</p>
+        <pre><code>BASE_URL="https://api.pipe-works.org"</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>REGISTER (TEMPORARY VISITOR)</h3>
+        <p>Visitor accounts are purged after 24 hours. Password policy is enforced.</p>
+        <pre><code>curl -sS -X POST "$BASE_URL/register" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "goblin_scout",
+    "password": "change-me-please",
+    "password_confirm": "change-me-please"
+  }'</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>LOGIN</h3>
+        <p>
+          On success you receive a
+          <code>session_id</code>
+          and role.
+        </p>
+        <pre><code>curl -sS -X POST "$BASE_URL/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "goblin_scout",
+    "password": "change-me-please"
+  }'</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>COMMAND</h3>
+        <p>
+          Movement, chat, and inventory all route through
+          <code>/command</code>
+          .
+        </p>
+        <pre><code>curl -sS -X POST "$BASE_URL/command" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "session_id": "SESSION_ID",
+    "command": "look"
+  }'</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>STATUS</h3>
+        <p>Check player status with a path-based session id.</p>
+        <pre><code>curl -sS "$BASE_URL/status/SESSION_ID"</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>CHAT</h3>
+        <p>Pull the most recent chat from your current room.</p>
+        <pre><code>curl -sS "$BASE_URL/chat/SESSION_ID"</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>LOGOUT</h3>
+        <pre><code>curl -sS -X POST "$BASE_URL/logout" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "session_id": "SESSION_ID"
+  }'</code></pre>
+      </section>
+
+      <section class="rule">
+        <h3>ADMIN: LIST PLAYERS</h3>
+        <p>Requires VIEW_LOGS permission.</p>
+        <pre><code>curl -sS "$BASE_URL/admin/database/players?session_id=ADMIN_SESSION_ID"</code></pre>
+      </section>
+    </main>
+  </body>
+</html>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Crooked Pipe Pub Crawl | pipe-works</title>
-    <link rel="stylesheet" href="css/fonts.css" />
-    <link rel="stylesheet" href="css/pipe-works-base.css" />
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/pipe-works-base.css" />
     <style>
       /* =========================================================
            Pub Crawl Specific Styles
@@ -291,7 +291,7 @@
         <div class="login-form">
           <div class="form-group">
             <label for="serverUrl">Server</label>
-            <input type="text" id="serverUrl" placeholder="http://localhost:8000" />
+            <input type="text" id="serverUrl" placeholder="https://api.pipe-works.org" />
           </div>
           <div class="form-group">
             <label for="username">Name</label>
@@ -364,7 +364,7 @@
       <!-- Footer -->
       <footer class="imprint">
         <nav class="crawl-nav">
-          <a href="index.html">← Back to pipe-works</a>
+          <a href="../../index.html">← Back to pipe-works</a>
         </nav>
         <p class="margin-note">
           The Crooked Pipe Pub Crawl is a teaching tool that never explains itself out loud. Eleven
@@ -560,7 +560,7 @@
        */
       async function login() {
         // Get form values
-        serverUrl = document.getElementById('serverUrl').value || 'http://localhost:8000';
+        serverUrl = document.getElementById('serverUrl').value || 'https://api.pipe-works.org';
         username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
@@ -826,7 +826,7 @@
 
       // Set default server URL on page load
       document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('serverUrl').value = 'http://localhost:8000';
+        document.getElementById('serverUrl').value = 'https://api.pipe-works.org';
 
         // Initialize empty map and progress
         updateMap();
