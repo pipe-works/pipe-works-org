@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/pipe-works/pipe-works-org/compare/v0.1.4...v0.1.5) (2026-02-10)
+
+
+### Features
+
+* add Goblin Law [#9](https://github.com/pipe-works/pipe-works-org/issues/9) — On Constraint ([786ba9c](https://github.com/pipe-works/pipe-works-org/commit/786ba9cf6dc9ece4959c52b6ff4e9ac8db0d1290))
+* **auth:** tag browser sessions ([8266c83](https://github.com/pipe-works/pipe-works-org/commit/8266c830109bb637937d2ab60019d5cb719bb203))
+
 ## [0.1.4](https://github.com/pipe-works/pipe-works-org/compare/v0.1.3...v0.1.4) (2026-02-01)
 
 
