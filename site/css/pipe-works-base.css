@@ -156,7 +156,7 @@ button {
 }
 
 a {
-  color: inherit;
+  color: var(--blood);
   text-decoration: none;
 }
 

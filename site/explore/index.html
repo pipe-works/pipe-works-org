@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/pipe-works-base.css" />
+    <link rel="stylesheet" href="../css/pipe-works-explore.css" />
   </head>
 
   <body>
@@ -17,22 +18,182 @@
       </header>
 
       <section class="notice">
-        <p>These are the rooms we open when we want to see what happens.</p>
+        <p>
+          Pipe-Works is a collection of tools that accidentally learned how to tell stories. Built
+          to solve very practical problems—naming things, mapping places, tracking what changed and
+          why—it quickly became clear that even the smallest systems carry narrative pressure. A
+          syllable suggests a history. A room implies a decision. A ledger remembers longer than
+          people do. Pipe-Works doesn’t care what world you build with it (we happen to use it for
+          Ledgerfall), only that the systems remain inspectable, deterministic, and slightly
+          mischievous. Explore freely, borrow shamelessly, break things gently. Everything here is a
+          tool. Everything, inevitably, becomes a story.
+        </p>
         <p>
           <a href="../index.html">← Back to the handbill</a>
         </p>
       </section>
 
-      <section class="ledger">
-        <h3>EXPLORE</h3>
-        <ul>
-          <li><a href="pub-crawl/">The Crooked Pipe Pub Crawl</a></li>
-          <li><a href="pub-crawl/crooked-pipe.html">The Crooked Pipe Door</a></li>
-          <li><a href="conditional-axes/">Conditional Axes</a></li>
-          <li><a href="image-generation/">Image Generation</a></li>
-          <li><a href="api-experiments/">API Experiments</a></li>
-        </ul>
+      <section class="ledger" id="mud-login">
+        <h3>REQUEST A TEMPORARY PERSONHOOD PERMIT</h3>
+        <p>
+          The city does not allow strangers to drift unattended. If you wish to walk its rooms,
+          speak in its taverns, or accidentally offend a goblin, you must be issued a temporary
+          personhood.
+        </p>
+
+        <p class="small">
+          All permits dissolve after 24 hours. Ledgerfall remembers — but it does not keep you.
+        </p>
+
+        <hr />
+
+        <h4>Procedure (Strictly Deterministic, Mildly Ceremonial)</h4>
+
+        <ol class="small">
+          <li>
+            <strong>Mint a Name</strong>
+            — Every visitor requires a designation the city can pronounce.
+          </li>
+          <li>
+            <strong>Forge a Key</strong>
+            — A one-time password is struck and assigned.
+          </li>
+          <li>
+            <strong>Declare Presence</strong>
+            — Name and key are presented at the door.
+          </li>
+        </ol>
+
+        <form class="permit">
+          <div class="permit-field permit-field--character">
+            <label for="mud-username">Character name</label>
+            <input id="mud-username" type="text" placeholder="leave blank to generate" />
+          </div>
+
+          <div class="permit-field permit-field--account">
+            <label for="mud-account">Account username</label>
+            <input id="mud-account" type="text" placeholder="Assigned by Ledgerfall" />
+          </div>
+
+          <div class="permit-field permit-field--password">
+            <label for="mud-password">Temporary Key</label>
+            <input id="mud-password" type="text" placeholder="auto-issued if blank" />
+          </div>
+
+          <div class="actions">
+            <button id="mud-login-button" type="button">Issue Permit & Enter</button>
+            <button id="mud-copy-button" type="button">Copy Credentials</button>
+            <button id="mud-logout-button" type="button" hidden>Dissolve Permit</button>
+          </div>
+        </form>
+        <div class="small permit-stages">
+          <p id="mud-stage-generate">⟡ Stage I — Awaiting designation.</p>
+          <p id="mud-stage-password">⟡ Stage II — Awaiting key forging.</p>
+          <p id="mud-stage-login">⟡ Stage III — Awaiting declaration.</p>
+        </div>
+        <p class="small" id="mud-status">Ready to issue a visitor account.</p>
+
+        <!--
+          Entity-state output panel.
+          This is populated by mud-auth-ui.js when /register-guest returns
+          an entity profile payload.
+        -->
+        <section class="permit-entity" id="mud-entity-panel" hidden>
+          <h4>Issued Entity Profile</h4>
+          <p class="small" id="mud-entity-seed">Seed: -</p>
+
+          <div class="permit-entity-toolbar">
+            <button id="mud-entity-copy-button" type="button">Copy Profile JSON</button>
+            <button id="mud-entity-save-png-button" type="button" class="permit-entity-save-png">
+              Save as PNG
+            </button>
+          </div>
+
+          <div class="permit-entity-idcard">
+            <div class="permit-entity-portrait" aria-hidden="true">
+              <span>Portrait Placeholder</span>
+            </div>
+
+            <dl class="permit-entity-meta">
+              <div class="permit-entity-meta-row">
+                <dt>Account</dt>
+                <dd id="mud-entity-account">-</dd>
+              </div>
+              <div class="permit-entity-meta-row">
+                <dt>Character</dt>
+                <dd id="mud-entity-character">-</dd>
+              </div>
+              <div class="permit-entity-meta-row">
+                <dt>Character ID</dt>
+                <dd id="mud-entity-character-id">-</dd>
+              </div>
+              <div class="permit-entity-meta-row">
+                <dt>World</dt>
+                <dd id="mud-entity-world">-</dd>
+              </div>
+            </dl>
+          </div>
+
+          <h5 class="permit-entity-heading">Axis Conditions</h5>
+          <div class="permit-entity-columns">
+            <div>
+              <h5>Character Axes</h5>
+              <ul class="permit-entity-list" id="mud-entity-character-list"></ul>
+            </div>
+            <div>
+              <h5>Occupation Axes</h5>
+              <ul class="permit-entity-list" id="mud-entity-occupation-list"></ul>
+            </div>
+          </div>
+
+          <p class="small permit-entity-error" id="mud-entity-error" hidden></p>
+        </section>
+
+        <hr />
+
+        <p class="small">
+          <em>
+            Goblin Notice: This is not account creation. It is the controlled issuance of temporary
+            narrative agency.
+          </em>
+        </p>
       </section>
     </main>
+
+    <script src="../js/namegen-api.js"></script>
+    <script src="../js/mud-api.js"></script>
+    <script src="../js/mud-auth-ui.js"></script>
+    <script>
+      window.PipeWorksMudAuthUI?.initLoginPanel({
+        accountInputId: 'mud-account',
+        usernameInputId: 'mud-username',
+        passwordInputId: 'mud-password',
+        statusElementId: 'mud-status',
+        loginButtonId: 'mud-login-button',
+        copyButtonId: 'mud-copy-button',
+        logoutButtonId: 'mud-logout-button',
+        stageGenerateId: 'mud-stage-generate',
+        stagePasswordId: 'mud-stage-password',
+        stageLoginId: 'mud-stage-login',
+        entityPanelId: 'mud-entity-panel',
+        entitySeedId: 'mud-entity-seed',
+        entityCharacterListId: 'mud-entity-character-list',
+        entityOccupationListId: 'mud-entity-occupation-list',
+        entityErrorId: 'mud-entity-error',
+        entityCopyButtonId: 'mud-entity-copy-button',
+        entitySavePngButtonId: 'mud-entity-save-png-button',
+        entityAccountId: 'mud-entity-account',
+        entityCharacterNameId: 'mud-entity-character',
+        entityCharacterIdId: 'mud-entity-character-id',
+        entityWorldId: 'mud-entity-world',
+        occupationAxisNames: [
+          'legitimacy',
+          'visibility',
+          'moral_load',
+          'dependency',
+          'risk_exposure',
+        ],
+      });
+    </script>
   </body>
 </html>

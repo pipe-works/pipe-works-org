@@ -26,9 +26,9 @@
 }
 
 .actions a {
-  color: var(--ink);
+  color: var(--blood);
   text-decoration: none;
-  border-bottom: 1px dashed var(--ink-faded);
+  border-bottom: 1px dashed currentcolor;
 }
 
 .actions a:hover {
