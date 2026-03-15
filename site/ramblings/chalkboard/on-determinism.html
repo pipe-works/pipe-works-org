@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>pipe-works.org &mdash; On Determinism</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/pipe-works-base.css" />
+  </head>
+
+  <body>
+    <main class="sheet">
+      <header class="masthead" id="top">
+        <h1>PIPE-WORKS</h1>
+        <p class="strapline">Same seed, same world. No exceptions.</p>
+      </header>
+
+      <section class="notice">
+        <p><strong>On Determinism</strong></p>
+        <p>
+          <a href="index.html">&larr; Back to chalkboard</a>
+        </p>
+      </section>
+
+      <section class="rule">
+        <h2>The Argument</h2>
+        <p>A world that changes when nobody is looking is not a world. It is a mood.</p>
+        <p>
+          Determinism is not a constraint — it is a
+          <strong>promise</strong>
+          . Given the same seed, the same name is minted, the same quirks are assigned, the same
+          room is built in the same order with the same leaky pipe in the corner.
+        </p>
+        <p>This matters because:</p>
+        <ul>
+          <li>Players can return and find what they left.</li>
+          <li>Bugs can be reproduced by replaying a seed.</li>
+          <li>The system&rsquo;s authority is auditable, not mystical.</li>
+        </ul>
+        <h2>The Practice</h2>
+        <p>
+          Every generator in the Pipe-Works ecosystem uses an
+          <strong>isolated RNG instance</strong>
+          , never the global random state:
+        </p>
+        <pre><code class="language-python">rng = random.Random(seed)
+name = rng.choice(syllables)
+</code></pre>
+        <p>
+          Global state is shared state. Shared state is contested ground. Contested ground produces
+          surprises that nobody asked for.
+        </p>
+        <h2>Marginal Note</h2>
+        <p><em>If your world needs a coin flip to exist, it was never really there.</em></p>
+      </section>
+
+      <footer class="imprint">
+        <p class="small">2026-03-15</p>
+      </footer>
+    </main>
+  </body>
+</html>
