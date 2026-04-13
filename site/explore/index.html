@@ -164,36 +164,41 @@
     <script src="../js/mud-api.js"></script>
     <script src="../js/mud-auth-ui.js"></script>
     <script>
-      window.PipeWorksMudAuthUI?.initLoginPanel({
-        accountInputId: 'mud-account',
-        usernameInputId: 'mud-username',
-        passwordInputId: 'mud-password',
-        statusElementId: 'mud-status',
-        loginButtonId: 'mud-login-button',
-        copyButtonId: 'mud-copy-button',
-        logoutButtonId: 'mud-logout-button',
-        stageGenerateId: 'mud-stage-generate',
-        stagePasswordId: 'mud-stage-password',
-        stageLoginId: 'mud-stage-login',
-        entityPanelId: 'mud-entity-panel',
-        entitySeedId: 'mud-entity-seed',
-        entityCharacterListId: 'mud-entity-character-list',
-        entityOccupationListId: 'mud-entity-occupation-list',
-        entityErrorId: 'mud-entity-error',
-        entityCopyButtonId: 'mud-entity-copy-button',
-        entitySavePngButtonId: 'mud-entity-save-png-button',
-        entityAccountId: 'mud-entity-account',
-        entityCharacterNameId: 'mud-entity-character',
-        entityCharacterIdId: 'mud-entity-character-id',
-        entityWorldId: 'mud-entity-world',
-        occupationAxisNames: [
-          'legitimacy',
-          'visibility',
-          'moral_load',
-          'dependency',
-          'risk_exposure',
-        ],
-      });
+      (function () {
+        var isLocal = window.location.hostname.endsWith('.luminal.local');
+        window.PipeWorksMudAuthUI?.initLoginPanel({
+          mudApiBaseUrl: isLocal ? 'https://pipeworks.luminal.local' : undefined,
+          nameGenApiBaseUrl: isLocal ? 'https://namegen-api.luminal.local' : undefined,
+          accountInputId: 'mud-account',
+          usernameInputId: 'mud-username',
+          passwordInputId: 'mud-password',
+          statusElementId: 'mud-status',
+          loginButtonId: 'mud-login-button',
+          copyButtonId: 'mud-copy-button',
+          logoutButtonId: 'mud-logout-button',
+          stageGenerateId: 'mud-stage-generate',
+          stagePasswordId: 'mud-stage-password',
+          stageLoginId: 'mud-stage-login',
+          entityPanelId: 'mud-entity-panel',
+          entitySeedId: 'mud-entity-seed',
+          entityCharacterListId: 'mud-entity-character-list',
+          entityOccupationListId: 'mud-entity-occupation-list',
+          entityErrorId: 'mud-entity-error',
+          entityCopyButtonId: 'mud-entity-copy-button',
+          entitySavePngButtonId: 'mud-entity-save-png-button',
+          entityAccountId: 'mud-entity-account',
+          entityCharacterNameId: 'mud-entity-character',
+          entityCharacterIdId: 'mud-entity-character-id',
+          entityWorldId: 'mud-entity-world',
+          occupationAxisNames: [
+            'legitimacy',
+            'visibility',
+            'moral_load',
+            'dependency',
+            'risk_exposure',
+          ],
+        });
+      })();
     </script>
   </body>
 </html>

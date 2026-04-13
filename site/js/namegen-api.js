@@ -78,7 +78,7 @@
     try {
       const payload = {
         class_key: 'first_name',
-        package_id: 1,
+        package_id: 2,
         syllable_key: 'all',
         generation_count: 1,
         unique_only: true,
