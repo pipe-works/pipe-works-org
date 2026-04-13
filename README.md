@@ -52,7 +52,7 @@ This repository does not own:
 
 ## Repository Layout
 
-```
+```text
 site/               Hand-authored HTML pages and assets served as the web root
   index.html        Main landing page
   css/              Shared and page-specific stylesheets
