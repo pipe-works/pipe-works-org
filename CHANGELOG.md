@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/pipe-works/pipe-works-org/compare/v0.1.6...v0.1.7) (2026-04-13)
+
+
+### Features
+
+* **explore:** show Tourist Board closed notice on production ([#36](https://github.com/pipe-works/pipe-works-org/issues/36)) ([89622ab](https://github.com/pipe-works/pipe-works-org/commit/89622ab399fdba809c839dd9841e2658195a18ad))
+
 ## [0.1.6](https://github.com/pipe-works/pipe-works-org/compare/v0.1.5...v0.1.6) (2026-04-13)
 
 
