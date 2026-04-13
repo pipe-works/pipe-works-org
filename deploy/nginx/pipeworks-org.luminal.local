@@ -1,0 +1,25 @@
+server {
+    listen 80;
+    server_name pipeworks-org.luminal.local;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name pipeworks-org.luminal.local;
+
+    ssl_certificate     /etc/nginx/certs/pipeworks-org.luminal.local.pem;
+    ssl_certificate_key /etc/nginx/certs/pipeworks-org.luminal.local-key.pem;
+
+    root /srv/work/pipeworks/repos/pipe-works-org/site;
+    index index.html;
+
+    access_log /var/log/nginx/pipeworks-org.luminal.local.access.log;
+    error_log  /var/log/nginx/pipeworks-org.luminal.local.error.log;
+
+    include /etc/nginx/snippets/security-headers.conf;
+
+    location / {
+        try_files $uri $uri/ $uri.html =404;
+    }
+}

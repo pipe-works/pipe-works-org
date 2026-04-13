@@ -6,16 +6,37 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 pipe-works.org is a static HTML/CSS website with a print-workshop aesthetic. It features interconnected pages with shared typography and styling, themed around "goblin laws" and philosophical content. GPL-3.0 licensed.
 
+## Luminal Local Surfaces
+
+When working on `luminal.local`, two local browser surfaces are available:
+
+- **Preview:** `https://pipeworks-org.luminal.local` — nginx serving `site/`
+  as a static document root. Reflects the working tree in real time; no server
+  restart needed after editing HTML/CSS.
+- **Author UI:** `https://author.pipeworks-org.luminal.local` — the Flask
+  authoring UI from `tools/author.py`, backed by
+  `pipeworks-pipeworks-org-author.service` on `127.0.0.1:8410`.
+
+Neither surface affects the live `pipe-works.org` site. Deployment to Mythic
+Beasts only happens via GH Actions on push to `main`.
+
 ## Development
 
-**No build system, dependencies, or installation required.** Edit files and reload browser.
+**Workspace venv:** `/srv/work/pipeworks/venvs/pw-pipeworks-org`
 
 ```bash
-# Serve locally (pick one)
-open index.html                    # Direct file access
-python3 -m http.server 8000        # Python server at localhost:8000
-npx http-server                    # Node server at localhost:8080
+# Activate venv
+source /srv/work/pipeworks/venvs/pw-pipeworks-org/bin/activate
+
+# Run the publish tool
+python tools/publish.py
+
+# Run the author UI manually (if not using the systemd service)
+python tools/author.py --port 8410
 ```
+
+**No build system required for the static HTML/CSS.** Edit files and the
+nginx preview surface reflects changes immediately.
 
 ## Architecture
 
