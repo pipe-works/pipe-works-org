@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/pipe-works/pipe-works-org/compare/v0.1.5...v0.1.6) (2026-04-13)
+
+
+### Bug Fixes
+
+* **explore:** wire local API URLs and correct namegen package selection ([#34](https://github.com/pipe-works/pipe-works-org/issues/34)) ([b734646](https://github.com/pipe-works/pipe-works-org/commit/b734646e354b271081e1b301138390241026632a))
+
 ## [0.1.5](https://github.com/pipe-works/pipe-works-org/compare/v0.1.4...v0.1.5) (2026-02-10)
 
 
