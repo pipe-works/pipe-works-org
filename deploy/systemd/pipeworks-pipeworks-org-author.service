@@ -1,0 +1,21 @@
+[Unit]
+Description=PipeWorks pipe-works-org Author UI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pipeworks
+Group=pipeworks
+WorkingDirectory=/srv/work/pipeworks/repos/pipe-works-org
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/srv/work/pipeworks/venvs/pw-pipeworks-org/bin/python tools/author.py --port 8410
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
